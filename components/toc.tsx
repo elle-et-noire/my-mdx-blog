@@ -18,7 +18,7 @@ function Toc() {
 
   return (
     <div className="sticky top-0 pt-16 ml-8">
-      <h2 className="text-xl border-l-4 border-secondary pl-1">ToC</h2>
+      <h2 className="text-xl border-l-4 border-secondary pl-1">目次</h2>
       <div className="toc px-0 pb-8 text-base"></div> {/* 目次の表示部分 */}
     </div>
   );

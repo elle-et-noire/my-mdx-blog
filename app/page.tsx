@@ -5,7 +5,7 @@ import PostCard from "@/components/postCard";
 export default function Home() {
   const posts = GetAllPosts();
   return (
-    <div className="grid grid-rows-2 items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] ">
+    <div className="grid grid-rows-2 items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col items-center sm:items-start bg-[#a0bac8] p-4 w-full">
         {posts.map((post) => (
           <PostCard
