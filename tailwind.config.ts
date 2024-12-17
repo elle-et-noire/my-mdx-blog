@@ -7,6 +7,10 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      "noto-sans": ['var(--font-noto-sans)'],
+      "kosugi-maru": ['var(--font-kosugi-maru'],
+    },
     extend: {
       colors: {
         background: "var(--background)",

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP, Kosugi_Maru } from "next/font/google";
 import "./globals.css";
 
-const noto_sans = Noto_Sans_JP({ subsets: ["latin"]});
+const noto_sans = Noto_Sans_JP({ subsets: ["latin"], variable: "--font-noto-sans" });
+const kosugi_maru = Kosugi_Maru({ weight: "400", subsets: ["latin"], variable: "--font-kosugi-maru" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto_sans.className} antialiased`}>
+      {/* <body className={`${noto_sans.className} antialiased`}> */}
+      <body className={`${noto_sans.variable} ${kosugi_maru.variable} antialiased`} >
         {children}
       </body>
     </html>

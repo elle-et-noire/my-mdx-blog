@@ -33,7 +33,7 @@ export default async function PostPage(props: PostPageProps) {
       <div className="prose max-w-none w-[32rem] md:w-[64rem] flex justify-center mx-auto">
         <div className="w-full">
           <h1 className="flex justify-center mt-8">{data.title}</h1>
-          <div className="post bg-gray-100 p-8">
+          <div className="post bg-gray-100 p-8 font-[family-name:var(--font-noto-sans)] font-[500]">
             <MDXRemote source={content} options={options} />
           </div>
         </div>
