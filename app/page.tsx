@@ -4,8 +4,8 @@ import PostCard from "@/components/postCard";
 export default function Home() {
   const posts = GetAllPosts();
   return (
-    <div className="items-center justify-items-center min-h-screen bg-[#a0bac8] font-[family-name:var(--font-noto-sans)]">
-      <main className="flex flex-col items-center sm:items-start bg-[#a0bac8] py-16 w-[36rem]">
+    <div className="min-h-screen bg-[#a0bac8] font-[family-name:var(--font-noto-sans)]">
+      <main className="flex flex-col items-center sm:items-start bg-[#a0bac8] py-16 w-[36rem] mx-auto">
         {posts.map((post) => (
           <PostCard
             key={post.slug}

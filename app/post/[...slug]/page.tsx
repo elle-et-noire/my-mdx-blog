@@ -29,7 +29,7 @@ export default async function PostPage(props: PostPageProps) {
   const { content, data } = GetPostBySlug(params.slug);
 
   return (
-    <div className="m-0 py-12 bg-[#a0bac8]">
+    <div className="min-h-screen min-w-max m-0 py-12 bg-[#a0bac8]">
       <div className="prose max-w-none w-[40rem] md:w-[64rem] flex justify-center mx-auto pl-8 md:pl-16 pr-4 md:pr-8 pb-16 rounded-lg bg-gray-100">
         <div className="w-[48rem] font-[family-name:var(--font-noto-sans)]">
           <h1 className="mt-16 mb-3 font-[600]">{data.title}</h1>
