@@ -1,69 +1,21 @@
 import { GetAllPosts } from "@/libs/post";
-import Image from "next/image";
 import PostCard from "@/components/postCard";
 
 export default function Home() {
   const posts = GetAllPosts();
   return (
-    <div className="grid grid-rows-2 items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col items-center sm:items-start bg-[#a0bac8] p-4 w-full">
+    <div className="items-center justify-items-center min-h-screen bg-[#a0bac8] font-[family-name:var(--font-noto-sans)]">
+      <main className="flex flex-col items-center sm:items-start bg-[#a0bac8] py-16 w-[36rem]">
         {posts.map((post) => (
           <PostCard
             key={post.slug}
             post={post}
             widthClass="w-full"
-            mainClassName="bg-[#edf1f4] text-[#344a5f] py-6 pl-6 rounded-md"
+            mainClassName="bg-[#edf1f4] text-[#344a5f] py-6 pl-6 rounded-md shadow-[0_1px_1px_1px_rgba(0,0,0,0.5)] overflow-hidden my-3"
             textSize="text-base md:text-xl"
           />
         ))}
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

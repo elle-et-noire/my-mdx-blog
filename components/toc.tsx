@@ -17,7 +17,7 @@ function Toc() {
   }, []);
 
   return (
-    <div className="sticky top-0 pt-16 ml-8 font-[family-name:var(--font-kosugi-maru)]">
+    <div className="sticky top-0 pt-16 ml-8 font-system">
       <h2 className="text-base text-white text-center bg-[#324e73] py-0.5 font-[300]">目次</h2>
       <div className="toc px-0 pb-8 text-base"></div>
     </div>

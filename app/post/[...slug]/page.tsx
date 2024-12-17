@@ -30,19 +30,24 @@ export default async function PostPage(props: PostPageProps) {
   const { content, data } = GetPostBySlug(params.slug);
 
   return (
-    <div className="bg-zinc-700 m-0 p-12">
+    <div className="m-0 p-12 bg-[#a0bac8]">
       <div className="prose max-w-none w-[32rem] md:w-[72rem] flex justify-center mx-auto p-10 rounded-lg bg-gray-100">
         <div className="w-full font-[family-name:var(--font-noto-sans)]">
-          <h1 className="mt-8 ml-4 font-[600]">{data.title}</h1>
-          <div className="post bg-gray-100 p-8 font-[500]">
+          <h1 className="mt-8 mb-3 ml-8 font-[600]">{data.title}</h1>
+          <div className="ml-8 flex justify-start gap-2 font-[family-name:var(--font-kosugi-maru)] text-gray-400 font-[400] italic">
+            <div>
+              <span className="pr-1">投稿日</span>{data.publish.toISOString().split('T')[0]}
+              <span className="pl-2 pr-1">» 最終更新日</span>{data.lastUpdate.toISOString().split('T')[0]}
+            </div>
+          </div>
+          <div className="post bg-gray-100 p-8 font-[500] prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-l-[#324e73] prose-h2:pl-3 prose-h2:py-1">
             <MDXRemote source={content} options={options} />
           </div>
         </div>
         <div className="w-3/12 hidden md:block">
           <Toc />
         </div>
-        <Link href="/" className="h-8">
-          {/* <i className="icon-close"></i> */}
+        <Link href="/" className="h-8 sticky top-0 pt-1">
           <div className="batsu"></div>
         </Link>
       </div>

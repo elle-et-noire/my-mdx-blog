@@ -27,7 +27,7 @@
 }
 
 .toc-link {
-  @apply text-gray-300 border-l-4 no-underline transition-colors duration-200 inline-block w-full py-1.5 pl-2;
+  @apply text-gray-400 border-l-4 no-underline transition-colors duration-200 inline-block w-full py-1.5 pl-2;
 }
 
 .is-collapsible .toc-link {
@@ -44,54 +44,6 @@
 
 .is-active-link {
   @apply text-[#324e73] border-l-4 border-l-[#324e73];
-}
-
-.parallel {
-  position: relative;
-  z-index: 1;
-  width: 80px;
-  height: 25px;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.parallel::before {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  transform: skewX(-30deg);
-  content: "";
-  background-color: #ffcc00;
-}
-
-.icon-close {
-  color: var(--icon-color);
-  width: 24px;
-  height: 24px;
-  position: relative;
-}
-
-.icon-close:before,
-.icon-close:after {
-  content: "";
-  position: absolute;
-  top: 12px;
-  width: 24px;
-  height: var(--icon-width);
-  background-color: currentColor;
-}
-
-.icon-close:before {
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.icon-close:after {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 
 .batsu {
