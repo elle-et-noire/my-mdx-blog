@@ -17,8 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <body className={`${noto_sans.className} antialiased`}> */}
-      <body className={`${noto_sans.variable} ${kosugi_maru.variable} antialiased`} >
+      <body className={`${noto_sans.variable} ${kosugi_maru.variable} antialiased m-0 p-0`} >
         {children}
       </body>
     </html>

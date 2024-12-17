@@ -5,6 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --icon-width: 4px;
+  --icon-color: black;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,7 +19,7 @@
 /* body { */
 /*  color: var(--foreground);
   background: var(--background);*/
-  /* font-family: Arial, Helvetica, sans-serif; */
+/* font-family: Arial, Helvetica, sans-serif; */
 /* } */
 
 .toc-list {
@@ -25,7 +27,7 @@
 }
 
 .toc-link {
-  @apply text-gray-500 border-l-4 border-l-white no-underline transition-colors duration-200 inline-block w-full py-1.5 pl-2;
+  @apply text-gray-300 border-l-4 no-underline transition-colors duration-200 inline-block w-full py-1.5 pl-2;
 }
 
 .is-collapsible .toc-link {
@@ -56,8 +58,68 @@
 .parallel::before {
   position: absolute;
   z-index: -1;
-  top: 0; bottom: 0; left: 0; right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   transform: skewX(-30deg);
   content: "";
   background-color: #ffcc00;
+}
+
+.icon-close {
+  color: var(--icon-color);
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.icon-close:before,
+.icon-close:after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 24px;
+  height: var(--icon-width);
+  background-color: currentColor;
+}
+
+.icon-close:before {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.icon-close:after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.batsu {
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.batsu::before,
+.batsu::after {
+  /* 共通設定 */
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  /* 棒の幅（太さ） */
+  height: 30px;
+  /* 棒の高さ */
+  background: #333;
+  border-radius: 2.5px; /* 棒の四隅の丸み*/
+}
+
+.batsu::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.batsu::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
