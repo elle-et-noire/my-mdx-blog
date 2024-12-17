@@ -1,0 +1,50 @@
+---
+title: Next.js+MDXでブログ制作
+description: Next.jsとMDX Remoteを利用してSSGのブログサイトを作っちゃおうという記事です。
+category: web
+publish: 2024.12.17
+lastUpdate: 2024.12.17
+tags:
+- nextjs
+- ssg
+- web
+---
+
+## Next.jsとは
+
+ReactベースのWebアプリケーションを制作できるフレームワーク。つい最近Next.js 15が出た。
+
+SSGやSSRができる。`next/link`を利用した高速なページ遷移が可能。SSRなら`next/image`を利用した高速な画像読み込みもできる。
+
+今回はNext.jsのSSGの機能を用いてMarkdownで書かれた記事を載せるブログサイトの制作を目指す。
+
+## 環境構築
+
+- npm
+
+さえあれば十分。エディタとして
+
+- VSCode
+
+もあるとなおよい。
+
+## はじめの一歩
+
+```sh
+npx create-next-app@latest
+```
+を実行し、後に表示される質問に答えていくと、基本となるプロジェクトフォルダが作成される。
+
+作成されたフォルダに移動し
+```sh
+npm run dev
+```
+を実行するとサーバーが立ち上がり、現状のサイトが表示される。
+
+### 必要なパッケージの追加
+
+プロジェクトフォルダで
+```sh
+npm install --save next-mdx-remote
+```
+を実行する。このパッケージは、プロジェクト内に配置された`.md`ファイルを読み込んでHTMLとして表示する機能を提供してくれる。

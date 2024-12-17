@@ -1,16 +1,21 @@
 import { GetAllPosts } from "@/libs/post";
 import Image from "next/image";
-import Link from "next/link";
-import PostList from "@/components/postList";
+import PostCard from "@/components/postCard";
 
 export default function Home() {
   const posts = GetAllPosts();
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div className="parallel">うおうお</div>
-        <Link href="/post/sample-post">Sample Post</Link>
-        <PostList posts={posts} />
+    <div className="grid grid-rows-2 items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] ">
+      <main className="flex flex-col items-center sm:items-start bg-[#a0bac8] p-4 w-full">
+        {posts.map((post) => (
+          <PostCard
+            key={post.slug}
+            post={post}
+            widthClass="w-full"
+            mainClassName="bg-[#edf1f4] text-[#344a5f] py-6 pl-6 rounded-md"
+            textSize="text-base md:text-xl"
+          />
+        ))}
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
