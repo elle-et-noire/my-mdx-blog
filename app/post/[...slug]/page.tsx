@@ -4,9 +4,8 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import Toc from "@/components/toc";  // Tocコンポーネントを追加
 import remarkMath from "remark-math";
-import rehypeMathJax from "rehype-mathjax";
 import Link from "next/link";
-
+import rehypeMathJaxSvg from "rehype-mathjax";
 
 interface PostPageProps {
   params: Promise<{
@@ -24,7 +23,7 @@ export default async function PostPage(props: PostPageProps) {
   const options = {
     mdxOptions: {
       remarkPlugins: [remarkGfm, remarkMath],
-      rehypePlugins: [rehypeSlug, rehypeMathJax],
+      rehypePlugins: [rehypeSlug, rehypeMathJaxSvg],
     },
   };
   const { content, data } = GetPostBySlug(params.slug);
@@ -41,7 +40,9 @@ export default async function PostPage(props: PostPageProps) {
             </div>
           </div>
           <div className="post bg-gray-100 p-8 font-[500] prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-l-[#324e73] prose-h2:pl-3 prose-h2:py-1">
-            <MDXRemote source={content} options={options} />
+            {/* <MathJaxContext> */}
+            <MDXRemote source={content.replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}").replace(/\\\)/g, "\\hspace{0.2em}$</span>")} options={options} />
+            {/* </MathJaxContext> */}
           </div>
         </div>
         <div className="w-3/12 hidden md:block">

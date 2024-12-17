@@ -75,3 +75,7 @@
 .batsu::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
+
+.inlinemath {
+  @apply inline-block align-[-2.5px];
+}
