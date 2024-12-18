@@ -40,7 +40,10 @@ export default async function PostPage(props: PostPageProps) {
             </div>
           </div>
           <div className="post bg-gray-100 font-[500] prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-l-[#324e73] prose-h2:pl-3 prose-h2:py-1">
-            <MDXRemote source={content.replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}").replace(/\\\)/g, "\\hspace{0.2em}$</span>")} options={options} />
+            <MDXRemote
+              source={content.replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}").replace(/\\\)/g, "\\hspace{0.2em}$</span>")}
+              options={options}
+            />
           </div>
         </div>
         <div className="w-3/12 hidden md:block">
