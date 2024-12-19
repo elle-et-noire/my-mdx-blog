@@ -3,9 +3,19 @@ import { Noto_Sans_JP, Kosugi_Maru, Nunito } from "next/font/google";
 
 import "./globals.css";
 
-const noto_sans = Noto_Sans_JP({ subsets: ["latin"], variable: "--font-noto-sans" });
-const kosugi_maru = Kosugi_Maru({ weight: "400", subsets: ["latin"], variable: "--font-kosugi-maru" });
-const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
+const noto_sans = Noto_Sans_JP({
+  subsets: ["latin"],
+  variable: "--font-noto-sans"
+});
+const kosugi_maru = Kosugi_Maru({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-kosugi-maru"
+});
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito"
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${noto_sans.variable} ${kosugi_maru.variable} ${nunito.variable} antialiased m-0 p-0`} >
+      <body className={`
+        ${noto_sans.variable}
+        ${kosugi_maru.variable}
+        ${nunito.variable} antialiased`} >
         {children}
       </body>
     </html>

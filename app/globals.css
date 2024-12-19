@@ -16,16 +16,6 @@
   }
 }
 
-/* html {
-  scroll-behavior: smooth;
-} */
-
-/* body { */
-/*  color: var(--foreground);
-  background: var(--background);*/
-/* font-family: Arial, Helvetica, sans-serif; */
-/* } */
-
 .toc-list {
   @apply w-full my-0 px-0;
 }
@@ -59,18 +49,14 @@
 
 .batsu::before,
 .batsu::after {
-  /* 共通設定 */
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 5px;
-  /* 棒の幅（太さ） */
   height: 30px;
-  /* 棒の高さ */
   background: #324e73;
   border-radius: 2.5px;
-  /* 棒の四隅の丸み*/
 }
 
 .batsu::before {
@@ -105,7 +91,6 @@
   width: 100%;
 }
 
-/* 疑似要素に平行四辺形の装飾を指定する */
 .post details summary::before {
   content: "";
   position: absolute;
