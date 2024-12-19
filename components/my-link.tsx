@@ -6,7 +6,6 @@ import Link from 'next/link';
 function MyLink({ children, href }: {
   children: string;
   href: string;
-
 }) {
   if (href === '') href = '/';
   return href.startsWith('/') || href.startsWith('#') ? (

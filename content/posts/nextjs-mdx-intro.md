@@ -23,7 +23,7 @@ tags:
 
 Next.jsは数か月前にもバージョン15が出たような活発なフレームワークであり、うかうかしているとすぐに置いて行かれる。一方で、`npm install`から追加できるライブラリ群は豊富で、やりたいと思ったことはたいてい先人が実装してくれている。またJSX言語を用いて自分でコンポーネントを作成することもできる。
 
-YAGNIという箴言もあるが、どうせなら自由度の高い環境で自分好みのサイトを制作したいという人はNext.jsが合うと思われる。
+[YAGNI](https://ja.wikipedia.org/wiki/YAGNI)という箴言もあるが、どうせなら自由度の高い環境で自分好みのサイトを制作したいという人はNext.jsが合うと思われる。
 
 またMarkdownをNext.jsでHTML表示する際にMDXを利用することで、自作のcomponentをMarkdown内へ埋め込むことが可能となる。
 
@@ -1189,7 +1189,7 @@ MathJax 3の機能を利用したい場合は`better-react-mathjax`を用いる�
 
 ## シンタックスハイライトを付ける
 
-[Rehype Pretty](https://rehype-pretty.pages.dev/)を利用する。
+[Rehype Pretty Code](https://rehype-pretty.pages.dev/)を利用する。
 
 ```sh
 npm install rehype-pretty-code shiki

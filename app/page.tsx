@@ -1,5 +1,6 @@
 import { GetAllPosts } from "@/libs/post";
 import PostCard from "@/components/post-card";
+import Copy from "@/components/my-code";
 
 export default function Home() {
   const posts = GetAllPosts();
@@ -19,6 +20,7 @@ export default function Home() {
         w-full md:w-[48rem]
         flex flex-col gap-3 items-center"
       >
+        <Copy />
         {posts.map((post) => (
           <PostCard key={post.slug} post={post} />
         ))}

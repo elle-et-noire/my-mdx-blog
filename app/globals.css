@@ -21,7 +21,7 @@
 }
 
 .toc-list-item .toc-link {
-  @apply text-gray-400 border-l-4 no-underline transition-colors duration-200 inline-block w-full py-1.5 pl-2;
+  @apply border-l-4 no-underline transition-colors duration-200 inline-block w-full py-1.5 pl-2 text-gray-400;
 }
 
 .is-collapsible .toc-link {
@@ -36,8 +36,8 @@
   @apply list-none w-full py-0 my-0;
 }
 
-.is-active-link {
-  @apply text-[#324e73] border-l-4 border-l-[#324e73];
+.is-active-li .toc-link {
+  @apply border-l-4 border-l-[#324e73] text-[#324e73];
 }
 
 .batsu {
