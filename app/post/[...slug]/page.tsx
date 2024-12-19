@@ -29,7 +29,7 @@ export default async function PostPage(props: PostPageProps) {
   const { content, data } = GetPostBySlug(params.slug);
 
   return (
-    <div className="min-h-screen min-w-max m-0 pb-12 bg-[#a0bac8]">
+    <main className="min-h-screen min-w-max m-0 pb-12 bg-[#a0bac8]">
       <div className="z-0 fixed top-0 w-full p-0 top-0 left-0 right-0 text-center text-[#112b45] underline underline-offset-[12px] decoration-4 decoration-yellow-300 bg-[#fefefe] text-2xl font-system pt-4 pb-2 shadow-[0_1px_1px_1px_rgba(0,0,0,0.3)]">
         記事一覧
       </div>
@@ -57,6 +57,6 @@ export default async function PostPage(props: PostPageProps) {
           <div className="batsu"></div>
         </Link>
       </div>
-    </div>
+    </main>
   );
 }
