@@ -1,5 +1,5 @@
 ---
-title: Node.jsで開発する際に知っておくと便利な知識
+title: Node.js開発Tips
 publish: 2024-12-19
 lastUpdate: 2024-12-19
 tags:
@@ -13,12 +13,12 @@ tags:
 [参考](https://qiita.com/sugurutakahashi12345/items/df736ddaf65c244e1b4f)
 
 ```sh
-npx -p npm-check-updates -c "ncu" # check updates
+npx -p npm-check-updates -c "ncu" # check for updates
 npx -p npm-check-updates -c "ncu -u" # update package.json
 npm i
 ```
 
-## サーバーを立てる/切る
+## サーバーを立てる / 切る
 
 ```sh
 npm run dev &

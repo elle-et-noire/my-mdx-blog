@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "highlightjs": "^9.16.2",
     "next": "15.1.2",
@@ -21,7 +22,9 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "shiki": "^1.24.3",
-    "tocbot": "^4.32.2"
+    "tailwind-merge": "^2.5.5",
+    "tocbot": "^4.32.2",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

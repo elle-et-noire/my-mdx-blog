@@ -1,23 +1,18 @@
 "use client";
 
-import React from 'react'
+import Copy from "./copy";
 
-const Copy = () => {
-  const clickHandler = async () => {
-    const message = 'クリップボードに保存するメッセージ'
-    try {
-      await navigator.clipboard.writeText(message)
-      alert('クリップボードに保存しました。')
-    } catch {
-      alert('失敗しました。')
-    }
-  }
-
+function MyCode({ children }: {
+  children: string;
+}) {
   return (
-    <button className='btn m-5' onClick={() => clickHandler()}>
-      COPY
-    </button>
-  )
+    <>
+      <Copy message={children} />
+      <code>
+        {children}
+      </code>
+    </>
+  );
 }
 
-export default Copy;
+export default MyCode;

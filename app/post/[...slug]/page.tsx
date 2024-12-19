@@ -8,6 +8,10 @@ import Link from "next/link";
 import rehypeMathJaxSvg from "rehype-mathjax";
 import rehypePrettyCode from "rehype-pretty-code";
 import MyLink from "@/components/my-link";
+// import MyCode from "@/components/my-code";
+import { visit } from 'unist-util-visit';
+import { Root } from 'hast';
+import { Pre } from "@/components/pre";
 
 interface PostPageProps {
   params: Promise<{
@@ -22,10 +26,48 @@ export async function generateStaticParams() {
 
 export default async function PostPage(props: PostPageProps) {
   const params = await props.params;
+
   const options = {
     mdxOptions: {
       remarkPlugins: [remarkGfm, remarkMath],
-      rehypePlugins: [rehypePrettyCode, rehypeSlug, rehypeMathJaxSvg],
+      rehypePlugins: [
+        () => (tree: Root) => {
+          visit(tree, (node) => {
+            if (node?.type === "element" && node?.tagName === "pre") {
+              const [codeEl] = node.children;
+              // @ts-expect-error: type is not prepared
+              if (codeEl.tagName !== "code") return;
+              // @ts-expect-error: type is not prepared
+              node.raw = codeEl.children?.[0].value;
+            }
+          });
+        },
+        [rehypePrettyCode, {
+          // theme: {
+          //   dark: "one-dark-pro",
+          //   light: "github-light",
+          // },
+        }],
+        () => (tree: Root) => {
+          visit(tree, (node) => {
+            if (node?.type === "element" && node?.tagName === "figure") {
+              if (!("data-rehype-pretty-code-figure" in node.properties)) {
+                return;
+              }
+
+              for (const child of node.children) {
+                // @ts-expect-error: type is not prepared
+                if (child.tagName === "pre") {
+                  // @ts-expect-error: type is not prepared
+                  child.properties["raw"] = node.raw;
+                }
+              }
+            }
+          });
+        },
+        rehypeSlug,
+        rehypeMathJaxSvg,
+      ],
     },
   };
   const { content, data } = GetPostBySlug(params.slug);
@@ -78,9 +120,12 @@ export default async function PostPage(props: PostPageProps) {
                 .replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}")
                 .replace(/\\\)/g, "\\hspace{0.2em}$</span>")
               }
+              // @ts-expect-error: type is not prepared
               options={options}
               components={{
-                a: MyLink
+                a: MyLink,
+                pre: Pre
+                // code: MyCode,
               }}
             />
           </div>

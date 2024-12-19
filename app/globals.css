@@ -36,6 +36,7 @@
   @apply list-none w-full py-0 my-0;
 }
 
+/* .is-active-link { */
 .is-active-li .toc-link {
   @apply border-l-4 border-l-[#324e73] text-[#324e73];
 }
@@ -103,7 +104,7 @@
   border: solid #888;
   border-width: 1px;
   box-shadow: 0px 1px 1px #888;
-  transform: skewX(-15deg);
+  transform: skewX(-10deg);
   transition-duration: 50ms;
 }
 
@@ -124,4 +125,12 @@ details summary::after {
   float: right;
   width: 1rem;
   text-align: center;
+}
+
+html.light[data-theme="dark"] {
+  display: none;
+}
+
+html.dark[data-theme="light"] {
+  display: none;
 }
