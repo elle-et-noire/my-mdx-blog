@@ -472,6 +472,18 @@ export default PostCard;
 ```
 </details>
 
+<details><summary><code>{`my-app/types/post.d.ts`}</code></summary>
+```ts
+export type Post = {
+  slug: string,
+  content: string,
+  data: {
+    [key: string]: any,
+  }
+}
+```
+</details>
+
 また、記事一覧を取得する関数を定義する。
 
 <details><summary><code>{`my-app/libs/post.ts`}</code></summary>

@@ -54,7 +54,7 @@ export default async function PostPage(props: PostPageProps) {
         flex justify-center
         prose max-w-none"
       >
-        <div className="w-[48rem] font-noto-sans">
+        <div className="w-[36rem] md:w-[48rem] font-noto-sans">
           <h1 className="mt-16 mb-3 font-[600]">{data.title}</h1>
           <div className="
             flex justify-start gap-2
@@ -67,7 +67,7 @@ export default async function PostPage(props: PostPageProps) {
             </div>
           </div>
           <div className="
-            post font-[500] mt-8
+            post font-[500] mt-8 md:w-[43rem]
             prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-[#324e73] prose-h2:pl-4 prose-h2:py-1
             hover:prose-a:no-underline prose-a:underline-offset-[5px]
             prose-pre:my-1 prose-p:my-2 prose-code:before:content-none prose-code:after:content-none
