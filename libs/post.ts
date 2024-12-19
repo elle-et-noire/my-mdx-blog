@@ -8,17 +8,17 @@ const POSTS_PATH = path.join(process.cwd(), "contents/posts");
 // ファイル名（slug）の一覧を取得
 export function GetAllPostSlugs() {
   const postFilePaths = readdirSync(POSTS_PATH).filter((path) =>
-    /\.mdx?$/.test(path)
+    /\.md?$/.test(path)
   );
   return postFilePaths.map((path) => {
-    const slug = path.replace(/\.mdx?$/, "");
+    const slug = path.replace(/\.md?$/, "");
     return slug;
   });
 }
 
 // slugからファイルの中身を取得
 export function GetPostBySlug(slug: string) {
-  const markdown = readFileSync(`contents/posts/${slug}.mdx`, "utf8");
+  const markdown = readFileSync(path.join(POSTS_PATH, `${slug}.md`), "utf8");
 
   const { content, data } = matter(markdown);
   return {
@@ -30,7 +30,7 @@ export function GetPostBySlug(slug: string) {
 export function GetAllPosts() {
   const slugs = GetAllPostSlugs();
   const posts = slugs.map((slug) => {
-    const markdown = readFileSync(`contents/posts/${slug}.mdx`, 'utf8');
+    const markdown = readFileSync(path.join(POSTS_PATH, `${slug}.md`), 'utf8');
 
     const { content, data } = matter(markdown);
     return {

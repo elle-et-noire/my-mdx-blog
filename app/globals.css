@@ -79,3 +79,12 @@
 .inlinemath {
   @apply inline-block align-[-2.5px];
 }
+
+.post p code,
+.post summary code {
+  @apply bg-[#d9dce1] rounded-md py-1 px-2 mx-1;
+}
+
+.post figure {
+  @apply my-0;
+}

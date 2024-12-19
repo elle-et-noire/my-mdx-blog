@@ -6,6 +6,7 @@ import Toc from "@/components/toc";  // Tocコンポーネントを追加
 import remarkMath from "remark-math";
 import Link from "next/link";
 import rehypeMathJaxSvg from "rehype-mathjax";
+import rehypePrettyCode from "rehype-pretty-code";
 
 interface PostPageProps {
   params: Promise<{
@@ -23,7 +24,7 @@ export default async function PostPage(props: PostPageProps) {
   const options = {
     mdxOptions: {
       remarkPlugins: [remarkGfm, remarkMath],
-      rehypePlugins: [rehypeSlug, rehypeMathJaxSvg],
+      rehypePlugins: [rehypePrettyCode, rehypeSlug, rehypeMathJaxSvg],
     },
   };
   const { content, data } = GetPostBySlug(params.slug);
@@ -43,7 +44,11 @@ export default async function PostPage(props: PostPageProps) {
               <span className="pl-2 pr-1">» 最終更新日</span>{data.lastUpdate.toISOString().split('T')[0]}
             </div>
           </div>
-          <div className="post font-[500] mt-8 prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-[#324e73] prose-h2:pl-4 prose-h2:py-1">
+          <div className="post font-[500] mt-8 
+          prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-[#324e73] prose-h2:pl-4 prose-h2:py-1
+          hover:prose-a:no-underline prose-a:underline-offset-[5px]
+          prose-pre:my-1 prose-p:my-2 prose-code:before:content-none prose-code:after:content-none
+          prose-ul:my-2">
             <MDXRemote
               source={content.replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}").replace(/\\\)/g, "\\hspace{0.2em}$</span>")}
               options={options}

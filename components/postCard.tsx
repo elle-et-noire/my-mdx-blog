@@ -18,7 +18,7 @@ function PostCard({
 }: PostCardProps) {
   return (
     <Link href={`post/${post.slug}`} className={`no-underline ${widthClass} ${mainClassName}`}>
-      <h2 className={`font-semibold ${textSize} ml-6 mt-4`}>
+      <h2 className={`font-semibold font-[family-name:var(--font-noto-sans)] ${textSize} ml-6 mt-4`}>
         {post.data.title}
       </h2>
       <div className="m-0 pl-6 pt-1 pb-2 flex justify-start gap-2 font-[family-name:var(--font-kosugi-maru)] text-gray-400 text-sm font-[400] italic">
