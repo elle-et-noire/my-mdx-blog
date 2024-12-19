@@ -1,5 +1,5 @@
 ---
-title: Next.js + MDXでブログ制作
+title: Next.js + MDXでブログサイト制作入門
 publish: 2024-12-19
 lastUpdate: 2024-12-19
 tags:
@@ -292,3 +292,34 @@ export default async function PostPage(props: PostPageProps) {
 若干端に寄ってはいるものの、Markdownの見た目は整えられた。
 
 `npm run dev`が通っても実際にGitHub Pagesなどに配置する段になってエラーが起こることがあるので`npm run build`が通ることまで確認してから`git commit`する。
+
+
+## シンタックスハイライトを付ける
+
+[Rehype Pretty](https://rehype-pretty.pages.dev/)を利用する。
+
+```sh
+npm install rehype-pretty-code shiki
+```
+
+
+## 数式を表示する
+
+TBA
+
+
+## リンクを新しいタブで開く
+
+[参考文献](#参考文献)[3]を参考に`MyLink`コンポーネントを追加する。
+
+`<MDXRemote ... components={{a: MyLink}}/>`で置換できる。
+
+## 目次をつける
+
+[参考文献](#参考文献)[2]を参考にTocbotをインストールして目次を追加する。
+
+## 参考文献
+
+1. [Next.js + MDXでブログ開発](https://amateur-engineer-blog.com/build-blog-using-nextjs-with-mdx)
+2. [Next.js+MarkdownのブログにTocbotを使って目次を作成する](https://amateur-engineer-blog.com/create-toc-by-tocbot-for-nextjs-mdx-blog)
+3. [Next.jsを利用した初めての本格的Markdownブログサイトの構築](https://reffect.co.jp/react/nextjs-markdown-blog)

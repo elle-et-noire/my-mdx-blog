@@ -16,6 +16,10 @@
   }
 }
 
+/* html {
+  scroll-behavior: smooth;
+} */
+
 /* body { */
 /*  color: var(--foreground);
   background: var(--background);*/
@@ -26,7 +30,7 @@
   @apply w-full my-0 px-0;
 }
 
-.toc-link {
+.toc-list-item .toc-link {
   @apply text-gray-400 border-l-4 no-underline transition-colors duration-200 inline-block w-full py-1.5 pl-2;
 }
 
@@ -34,7 +38,7 @@
   @apply ml-2 font-normal;
 }
 
-.toc-link:hover {
+.toc-list-item .toc-link:hover {
   @apply text-[#324e73];
 }
 
@@ -65,7 +69,8 @@
   height: 30px;
   /* 棒の高さ */
   background: #324e73;
-  border-radius: 2.5px; /* 棒の四隅の丸み*/
+  border-radius: 2.5px;
+  /* 棒の四隅の丸み*/
 }
 
 .batsu::before {
@@ -91,6 +96,7 @@
 .post details {
   @apply mt-2 mb-4;
 }
+
 .post summary {
   position: relative;
   display: inline-block;
@@ -132,5 +138,5 @@ details summary::after {
   font-weight: 600;
   float: right;
   width: 1rem;
-  text-align:center;
+  text-align: center;
 }

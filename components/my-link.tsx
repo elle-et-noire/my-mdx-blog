@@ -10,8 +10,8 @@ function MyLink({ children, href }: {
 }) {
   if (href === '') href = '/';
   return href.startsWith('/') || href.startsWith('#') ? (
-    <Link href={href}>
-      <a>{children}</a>
+    <Link href={href} className='toc-link'>
+      {children}
     </Link>
   ) : (
     <a href={href} target="_blank" rel="noopener noreferrer">
