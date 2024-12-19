@@ -79,3 +79,8 @@
 .inlinemath {
   @apply inline-block align-[-2.5px];
 }
+
+.postcard {
+  background-color: linear-gradient(to bottom right, #fefefe, #324e73);
+  /* clip-path: polygon(60% 0, 100% 0, 100% 100%, 50% 100%); */
+}
