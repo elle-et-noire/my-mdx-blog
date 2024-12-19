@@ -19,13 +19,14 @@ interface PostPageProps {
   }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const slugs = GetAllPostSlugs();
   return slugs.map((slug) => ({ params: { slug } }));
 }
 
-export default async function PostPage(props: PostPageProps) {
-  const params = await props.params;
+export default async function PostPage({ params }: PostPageProps) {
 
   const options = {
     mdxOptions: {
@@ -70,7 +71,8 @@ export default async function PostPage(props: PostPageProps) {
       ],
     },
   };
-  const { content, data } = GetPostBySlug(params.slug);
+  const { slug } = await params;
+  const { content, data } = GetPostBySlug(slug);
 
   return (
     <main className="min-h-screen min-w-max m-0 pb-12 bg-[#a0bac8]">
