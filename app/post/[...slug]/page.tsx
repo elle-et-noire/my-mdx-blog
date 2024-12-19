@@ -7,6 +7,7 @@ import remarkMath from "remark-math";
 import Link from "next/link";
 import rehypeMathJaxSvg from "rehype-mathjax";
 import rehypePrettyCode from "rehype-pretty-code";
+import MyLink from "@/components/my-link";
 
 interface PostPageProps {
   params: Promise<{
@@ -52,6 +53,9 @@ export default async function PostPage(props: PostPageProps) {
             <MDXRemote
               source={content.replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}").replace(/\\\)/g, "\\hspace{0.2em}$</span>")}
               options={options}
+              components={{
+                a: MyLink
+              }}
             />
           </div>
         </div>

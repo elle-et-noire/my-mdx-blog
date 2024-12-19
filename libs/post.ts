@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 
 // MDXファイルのディレクトリ
-const POSTS_PATH = path.join(process.cwd(), "contents/posts");
+const POSTS_PATH = path.join(process.cwd(), "content/posts");
 
 // ファイル名（slug）の一覧を取得
 export function GetAllPostSlugs() {
