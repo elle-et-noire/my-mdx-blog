@@ -80,11 +80,57 @@
   @apply inline-block align-[-2.5px];
 }
 
-.post p code,
-.post summary code {
+.post p code {
   @apply bg-[#d9dce1] rounded-md py-1 px-2 mx-1;
 }
 
 .post figure {
   @apply my-0;
+}
+
+.post details {
+  @apply mt-2 mb-4;
+}
+.post summary {
+  position: relative;
+  display: inline-block;
+  padding: 4px 16px;
+  text-decoration: none;
+  width: 100%;
+}
+
+/* 疑似要素に平行四辺形の装飾を指定する */
+.post details summary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  border-radius: 3px;
+  border: solid #888;
+  border-width: 1px;
+  box-shadow: 0px 1px 1px #888;
+  transform: skewX(-15deg);
+  transition-duration: 50ms;
+}
+
+.post details[open] summary::before {
+  transform: skewX(0deg);
+  transition-duration: 50ms;
+}
+
+details[open] summary::after {
+  content: "−";
+  margin-top: -0.1rem;
+}
+
+details summary::after {
+  content: "+";
+  color: #324e73;
+  font-weight: 600;
+  float: right;
+  width: 1rem;
+  text-align:center;
 }
