@@ -43,8 +43,7 @@ export default async function PostPage(props: PostPageProps) {
               <span className="pl-2 pr-1">» 最終更新日</span>{data.lastUpdate.toISOString().split('T')[0]}
             </div>
           </div>
-          {/* <div className="post font-[500] prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-l-[#324e73] prose-h2:pl-3 prose-h2:py-1"> */}
-          <div className="post font-[500]">
+          <div className="post font-[500] mt-8 prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-[#324e73] prose-h2:pl-4 prose-h2:py-1">
             <MDXRemote
               source={content.replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}").replace(/\\\)/g, "\\hspace{0.2em}$</span>")}
               options={options}

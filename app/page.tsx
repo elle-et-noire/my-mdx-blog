@@ -15,7 +15,7 @@ export default function Home() {
               key={post.slug}
               post={post}
               widthClass="w-full"
-              mainClassName="bg-[#fefefe] text-[#324e73] p-6 pl-6 rounded-md shadow-[0_1px_0px_2px_rgba(128,167,180,1)] overflow-hidden"
+              mainClassName="bg-[#fefefe] text-[#324e73] rounded-md shadow-[0_1px_0px_2px_rgba(128,167,180,1)] overflow-hidden"
               textSize="text-lg md:text-xl"
             />
           ))}
