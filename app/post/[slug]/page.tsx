@@ -23,7 +23,11 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const slugs = GetAllPostSlugs();
-  return slugs.map((slug) => ({ params: { slug } }));
+  return slugs.map((slug) => {
+    return {
+      slug: slug
+    }
+  });
 }
 
 export default async function PostPage({ params }: PostPageProps) {
