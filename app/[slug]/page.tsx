@@ -2,7 +2,7 @@ import { GetAllPostSlugs, GetPostBySlug } from "@/lib/post";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
-import Toc from "@/components/toc";  // Tocコンポーネントを追加
+import Toc from "@/components/toc";
 import remarkMath from "remark-math";
 import Link from "next/link";
 import rehypeMathJaxSvg from "rehype-mathjax";
@@ -31,7 +31,6 @@ export async function generateStaticParams() {
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-
   const options = {
     mdxOptions: {
       remarkPlugins: [remarkGfm, remarkMath],
@@ -49,10 +48,6 @@ export default async function PostPage({ params }: PostPageProps) {
           });
         },
         [rehypePrettyCode, {
-          // theme: {
-          //   dark: "one-dark-pro",
-          //   light: "github-light",
-          // },
           transformers: [
             transformerLineNumbers({ autoApply: true }),
           ]
@@ -133,7 +128,6 @@ export default async function PostPage({ params }: PostPageProps) {
               components={{
                 a: _Link,
                 pre: _Pre,
-
               }}
             />
           </div>

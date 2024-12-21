@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-export const BasicItems = {
+export const _Code = {
   code: (props: HTMLAttributes<HTMLElement>) => {
     const { className, ...rest } = props;
     return (
