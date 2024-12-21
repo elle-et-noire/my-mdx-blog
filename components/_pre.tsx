@@ -13,10 +13,10 @@ export default function _Pre(props: PreProps) {
   } = props;
   return (
     <div className="code-block-container relative">
-      <p className="absolute z-30 top-[-5pt] left-0 uppercase text-xs font-medium bg-slate-700 text-white px-2 rounded-tl-lg">
+      <p className="absolute z-30 top-[-6pt] left-0 uppercase text-xs font-medium bg-slate-700 text-white px-2 pt-[1.5pt] pb-[0.5pt] rounded-tl-lg">
         {lang}
       </p>
-      <CopyButton text={raw} className="absolute z-30 top-1 right-3 italic text-[#888] text-sm" />
+      <CopyButton text={raw} className="absolute z-30 top-0 right-2 italic text-[#888] text-sm" />
       <pre {...props} className="">
         {children}
       </pre>

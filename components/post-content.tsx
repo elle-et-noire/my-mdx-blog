@@ -23,7 +23,6 @@ export default function PostContent({ content }: {
               const [codeEl] = node.children;
               if (codeEl.type === "element") {
                 if (codeEl.tagName == "code") {
-                  // console.log(typeof codeEl.children?.[0].value)
                   // @ts-expect-error: type is not prepared
                   const s = codeEl.children?.[0].value
                   if (typeof s === "string")

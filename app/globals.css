@@ -85,7 +85,7 @@
 }
 
 .post details {
-  @apply mt-2 mb-4 mx-2;
+  @apply mt-2 mb-4 mx-0;
 }
 
 .post summary {
