@@ -9,9 +9,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "noto-sans": ['var(--font-noto-sans)'],
+        "noto-sans": ['var(--font-noto-sans-jp)'],
         "system": ['var(--font-nunito)', 'var(--font-kosugi-maru)', 'sans-serif'],
-        "mono": ['var(--font-fira-mono)'],
+        "mono": ['var(--font-fira-mono)', 'consolas'],
       },
       colors: {
         background: "var(--background)",

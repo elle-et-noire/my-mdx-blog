@@ -5,7 +5,7 @@ import "./globals.css";
 
 const noto_sans = Noto_Sans_JP({
   subsets: ["latin"],
-  variable: "--font-noto-sans"
+  variable: "--font-noto-sans-jp"
 });
 const kosugi_maru = Kosugi_Maru({
   weight: "400",
@@ -21,7 +21,6 @@ const fira_mono = Fira_Mono({
   subsets: ["latin"],
   variable: "--font-fira-mono"
 });
-
 
 export const metadata: Metadata = {
   title: "Weekly Run Demo",

@@ -43,14 +43,6 @@ export default async function PostPage({ params }: PostPageProps) {
       >
         <div className="w-[36rem] md:w-[48rem] font-noto-sans" /* left column */ >
           <h1 className="mt-16 mb-3 font-[600]">{data.title}</h1>
-          {/* <div className="
-            flex justify-start gap-2
-            font-[family-name:var(--font-kosugi-maru)] font-[400]
-            text-gray-400 italic"
-          >
-            <span className="pr-1">投稿日</span>{data.publish.toISOString().split('T')[0]}
-            <span className="pl-2 pr-1">» 最終更新日</span>{data.lastUpdate.toISOString().split('T')[0]}
-          </div> */}
           <DateInfo data={data} className="text-base" />
           <div className="
             post font-[500] mt-8 md:w-[43rem]

@@ -16,7 +16,7 @@ export default function PostCard({ slug, data }: {
     >
       <h2 className="
         ml-6 mt-4
-        font-semibold font-[family-name:var(--font-noto-sans)]
+        font-semibold font-noto-sans
         text-lg md:text-xl"
       >
         {data.title}
