@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@rehype-pretty/transformers": "npm:@jsr/rehype-pretty__transformers@^0.13.4",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "highlightjs": "^9.16.2",

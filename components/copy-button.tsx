@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // @ts-expect-error: type is not prepared
-export const CopyButton = ({ text }) => {
+export const CopyButton = ({ className, text }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const copy = async () => {
@@ -12,11 +12,11 @@ export const CopyButton = ({ text }) => {
 
     setTimeout(() => {
       setIsCopied(false);
-    }, 10000);
+    }, 1000);
   };
 
   return (
-    <button disabled={isCopied} onClick={copy}>
+    <button disabled={isCopied} onClick={copy} className={className} title="copy-code">
       {isCopied ? "Copied!" : "Copy"}
     </button>
   );

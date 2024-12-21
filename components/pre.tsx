@@ -5,9 +5,9 @@ export const Pre = ({ children, raw, ...props }) => {
   const lang = props["data-language"];
   return (
     <pre {...props} className={""}>
-      <div className={"code-header"}>
+      <div className={"code-header static flex justify-between"}>
         {lang}
-        <CopyButton text={raw} />
+        <CopyButton text={raw} className={""} />
       </div>
       {children}
     </pre>

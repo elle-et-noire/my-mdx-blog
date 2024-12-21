@@ -12,6 +12,7 @@ import MyLink from "@/components/my-link";
 import { visit } from 'unist-util-visit';
 import { Root } from 'hast';
 import { Pre } from "@/components/pre";
+import { transformerLineNumbers } from "@rehype-pretty/transformers";
 
 interface PostPageProps {
   params: Promise<{
@@ -52,6 +53,14 @@ export default async function PostPage({ params }: PostPageProps) {
           //   dark: "one-dark-pro",
           //   light: "github-light",
           // },
+          transformers: [
+            // transformerCopyButton({
+            //   jsx: true,
+            //   visibility: "always",
+            //   feedbackDuration: 3_000,
+            // }),
+            transformerLineNumbers({ autoApply: true }),
+          ]
         }],
         () => (tree: Root) => {
           visit(tree, (node) => {
@@ -70,6 +79,15 @@ export default async function PostPage({ params }: PostPageProps) {
             }
           });
         },
+        // () => (tree: Root) => {
+        //   visit(tree, (node) => {
+        //     if (node?.type === "element" && node?.tagName === "button" && "rehype-pretty-code" in node?.properties) {
+        //       node.properties["onClick"] = async () => {
+        //         await navigator.clipboard.writeText(node.data?);
+        //       }
+        //     }
+        //   })
+        // },
         rehypeSlug,
         rehypeMathJaxSvg,
       ],
