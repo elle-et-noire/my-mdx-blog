@@ -42,7 +42,7 @@ export default async function PostPage({ params }: PostPageProps) {
         prose max-w-none"
       // modal window
       >
-        <div className="flex justify-end sticky top-0 pt-4">
+        <div className="flex justify-end z-30 sticky top-0 pt-4">
           <Link href="/" className="h-8">
             <div className="batsu"></div>
           </Link>
