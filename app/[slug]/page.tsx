@@ -35,8 +35,8 @@ export default async function PostPage({ params }: PostPageProps) {
       />
       <div className="
         z-20 relative flex flex-col
-        mx-auto mt-8 px-4 md:pl-8 md:pr-4 pb-16
-        w-[22rem] sm:w-[40rem] md:w-[64rem] rounded-lg
+        mx-auto mt-8 px-4 md:pl-16 md:pr-4 pb-16
+        w-[22rem] sm:w-[40rem] md:w-[68rem] rounded-lg
         bg-[#fefefe] shadow-[0_0px_3px_0px_rgba(128,128,128,0.5)]
         prose max-w-none"
       // modal window
@@ -48,12 +48,13 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
         <div className="grid grid-flow-col justify-stretch">
           <div className="w-[20rem] sm:w-[38rem] md:w-[48rem] font-noto-sans overflow-x-visible" /* left column */ >
-            <h1 className="mb-1 md:mb-3 font-[600] text-lg sm:text-2xl md:text-4xl">{data.title}</h1>
-            <DateInfo data={data} className="text-xs md:text-base" />
+            <h1 className="mb-1 md:mb-3 font-[600] text-lg sm:text-3xl md:text-4xl">{data.title}</h1>
+            <DateInfo data={data} className="text-xs sm:text-base" />
             <div className="
               post prose-sm md:prose-base font-[500] mt-8
-              prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-[#324e73] prose-h2:pl-4 prose-h2:py-1
-              prose-h2:text-lg md:prose-h2:text-2xl
+              prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-[#324e73]
+              prose-h2:pl-2 sm:prose-h2:pl-4 prose-h2:py-0.5 sm:prose-h2:py-1
+              prose-h2:text-base sm:prose-h2:text-2xl
               hover:prose-a:no-underline prose-a:underline-offset-[5px]
               prose-pre:my-1 prose-p:my-2 prose-code:before:content-none prose-code:after:content-none
               prose-ul:my-2"
