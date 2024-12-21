@@ -1,4 +1,4 @@
-import { GetAllPostSlugs, GetPostBySlug } from "@/libs/post";
+import { GetAllPostSlugs, GetPostBySlug } from "@/lib/post";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -10,7 +10,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import _Link from "@/components/_link";
 import { visit } from 'unist-util-visit';
 import { Root } from 'hast';
-import { Pre } from "@/components/pre";
+import { _Pre } from "@/components/_pre";
 import { transformerLineNumbers } from "@rehype-pretty/transformers";
 
 interface PostPageProps {
@@ -40,10 +40,12 @@ export default async function PostPage({ params }: PostPageProps) {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "pre") {
               const [codeEl] = node.children;
+              if (codeEl.type === "element") {
+                if (codeEl.tagName !== "code") return;
+
               // @ts-expect-error: type is not prepared
-              if (codeEl.tagName !== "code") return;
-              // @ts-expect-error: type is not prepared
-              node.raw = codeEl.children?.[0].value;
+                node.raw = codeEl.children?.[0].value;
+              }
             }
           });
         },
@@ -59,9 +61,7 @@ export default async function PostPage({ params }: PostPageProps) {
         () => (tree: Root) => {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "figure") {
-              if (!("data-rehype-pretty-code-figure" in node.properties)) {
-                return;
-              }
+              if (!("data-rehype-pretty-code-figure" in node.properties)) return;
 
               for (const child of node.children) {
                 // @ts-expect-error: type is not prepared
@@ -69,6 +69,7 @@ export default async function PostPage({ params }: PostPageProps) {
                   // @ts-expect-error: type is not prepared
                   child.properties["raw"] = node.raw;
                 }
+
               }
             }
           });
@@ -142,7 +143,7 @@ export default async function PostPage({ params }: PostPageProps) {
               options={options}
               components={{
                 a: _Link,
-                pre: Pre
+                pre: _Pre,
                 // code: MyCode,
               }}
             />

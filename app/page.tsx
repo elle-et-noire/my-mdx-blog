@@ -1,4 +1,4 @@
-import { GetAllPosts } from "@/libs/post";
+import { GetAllPosts } from "@/lib/post";
 import PostCard from "@/components/post-card";
 // import Copy from "@/components/copy";
 
