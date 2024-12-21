@@ -1223,6 +1223,10 @@ MathJax 3の機能を利用したい場合は`better-react-mathjax`を用いる�
 
 自分で前処理のスクリプトを書く。[先人](https://qiita.com/pecorarista/items/accd492e8d5fb23ff2fa)もいる。
 
+## レスポンシブデザイン
+
+スマホからも見やすいサイトを作る。[Tailwindの機能](https://tailwindcss.com/docs/responsive-design)でがんばる。ブラウザを小さくしていい感じに拡大するとスマホの画面が再現出来て微調整しやすい。
+
 
 ## 参考文献
 

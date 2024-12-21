@@ -111,7 +111,7 @@
 
 .post details[open] summary::before {
   transform: skewX(0deg);
-  transition-duration: 50ms;
+  transition-duration: 200ms;
 }
 
 details[open] summary::after {
