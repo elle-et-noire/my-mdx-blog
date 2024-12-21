@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import * as tocbot from "tocbot";
 
-function Toc() {
+export default function Toc() {
   useEffect(() => {
     // Tocbotの初期化
     tocbot.init({
@@ -24,4 +24,3 @@ function Toc() {
   );
 }
 
-export default Toc;

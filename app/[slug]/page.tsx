@@ -1,17 +1,7 @@
 import { GetAllPostSlugs, GetPostBySlug } from "@/lib/post";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
 import Toc from "@/components/toc";
-import remarkMath from "remark-math";
 import Link from "next/link";
-import rehypeMathJaxSvg from "rehype-mathjax";
-import rehypePrettyCode from "rehype-pretty-code";
-import _Link from "@/components/_link";
-import { visit } from 'unist-util-visit';
-import { Root } from 'hast';
-import _Pre from "@/components/_pre";
-import { transformerLineNumbers } from "@rehype-pretty/transformers";
+import PostContent from "@/components/post-content";
 
 interface PostPageProps {
   params: Promise<{
@@ -31,47 +21,6 @@ export async function generateStaticParams() {
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const options = {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm, remarkMath],
-      rehypePlugins: [
-        () => (tree: Root) => {
-          visit(tree, (node) => {
-            if (node?.type === "element" && node?.tagName === "pre") {
-              const [codeEl] = node.children;
-              if (codeEl.type === "element") {
-                if (codeEl.tagName == "code")
-                  // @ts-expect-error: type is not prepared
-                  node.raw = codeEl.children?.[0].value;
-              }
-            }
-          });
-        },
-        [rehypePrettyCode, {
-          transformers: [
-            transformerLineNumbers({ autoApply: true }),
-          ]
-        }],
-        () => (tree: Root) => {
-          visit(tree, (node) => {
-            if (node?.type === "element" && node?.tagName === "figure") {
-              if (!("data-rehype-pretty-code-figure" in node.properties)) return;
-
-              for (const child of node.children) {
-                if (child.type === "element" && child.tagName === "pre") {
-                  // @ts-expect-error: type is not prepared
-                  child.properties["raw"] = node.raw;
-                }
-
-              }
-            }
-          });
-        },
-        rehypeSlug,
-        rehypeMathJaxSvg,
-      ],
-    },
-  };
   const { slug } = await params;
   const { content, data } = GetPostBySlug(slug);
 
@@ -118,18 +67,7 @@ export default async function PostPage({ params }: PostPageProps) {
             prose-pre:my-1 prose-p:my-2 prose-code:before:content-none prose-code:after:content-none
             prose-ul:my-2"
           >
-            <MDXRemote
-              source={content
-                .replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}")
-                .replace(/\\\)/g, "\\hspace{0.2em}$</span>")
-              }
-              // @ts-expect-error: type is not prepared
-              options={options}
-              components={{
-                a: _Link,
-                pre: _Pre,
-              }}
-            />
+            <PostContent content={content} />
           </div>
         </div>
         <div className="w-3/12 hidden md:block">
