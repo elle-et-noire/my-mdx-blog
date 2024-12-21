@@ -1,7 +1,7 @@
 ---
 title: Next.js + MDXでブログサイト制作入門
 publish: 2024-12-19
-lastUpdate: 2024-12-19
+lastUpdate: 2024-12-21
 tags:
 - web
 - nextjs

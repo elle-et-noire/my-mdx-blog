@@ -11,8 +11,8 @@ export default function PostCard({ slug, data }: {
     <Link
       href={slug}
       className="
-        no-underline w-full bg-[#fefefe] text-[#324e73] rounded-md border-[#dadfe4] border-[1pt]
-        shadow-[0_1px_0px_2px_rgba(128,167,180,1)] overflow-hidden"
+        no-underline w-full bg-[#fefefe] text-[#324e73] rounded-md border-[#dadfe4] border-[0.5pt]
+        shadow-[0_1px_1px_1px_rgba(0,0,0,0.2)] overflow-hidden"
     >
       <h2 className="
         ml-6 mt-4

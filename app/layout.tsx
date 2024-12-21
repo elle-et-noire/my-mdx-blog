@@ -3,7 +3,7 @@ import { Noto_Sans_JP, Kosugi_Maru, Nunito, Fira_Mono } from "next/font/google";
 
 import "./globals.css";
 
-const noto_sans = Noto_Sans_JP({
+const noto_sans_jp = Noto_Sans_JP({
   subsets: ["latin"],
   variable: "--font-noto-sans-jp"
 });
@@ -35,13 +35,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`
-        ${noto_sans.variable}
+        ${noto_sans_jp.variable}
         ${kosugi_maru.variable}
         ${nunito.variable}
         ${fira_mono.variable}
          antialiased`}
       >
-        <main className="min-h-screen min-w-max m-0 pb-12 bg-[#a0bac8]">
+        <main className="min-h-screen m-0 pb-12 bg-[#a0bac8]">
           <div className="
             z-0 fixed top-0 left-0 right-0
             pt-4 pb-2 w-full
