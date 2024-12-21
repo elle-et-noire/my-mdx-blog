@@ -76,6 +76,10 @@
   @apply bg-[#d9dce1] rounded-md py-1 px-2 mx-1;
 }
 
+.post pre code {
+  @apply pt-2;
+}
+
 .post figure {
   @apply my-0;
 }

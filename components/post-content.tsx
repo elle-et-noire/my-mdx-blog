@@ -22,9 +22,14 @@ export default function PostContent({ content }: {
             if (node?.type === "element" && node?.tagName === "pre") {
               const [codeEl] = node.children;
               if (codeEl.type === "element") {
-                if (codeEl.tagName == "code")
+                if (codeEl.tagName == "code") {
+                  // console.log(typeof codeEl.children?.[0].value)
                   // @ts-expect-error: type is not prepared
-                  node.raw = codeEl.children?.[0].value;
+                  const s = codeEl.children?.[0].value
+                  if (typeof s === "string")
+                    // @ts-expect-error: type is not prepared
+                    node.raw = s.slice(0, -1); // trailing breakline
+                }
               }
             }
           });
