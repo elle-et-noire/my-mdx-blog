@@ -11,6 +11,7 @@ export default {
       fontFamily: {
         "noto-sans": ['var(--font-noto-sans)'],
         "system": ['var(--font-nunito)', 'var(--font-kosugi-maru)', 'sans-serif'],
+        "mono": ['var(--font-fira-mono)'],
       },
       colors: {
         background: "var(--background)",
