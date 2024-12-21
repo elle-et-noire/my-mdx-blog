@@ -2,7 +2,6 @@
 title: 共形場理論
 description: 共形場理論は共形不変性を備えた場の理論である。
 publish: 2024-11-29
-lastUpdate: 2024-11-30
 tags:
 - cft
 - phys

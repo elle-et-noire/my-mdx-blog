@@ -5,11 +5,10 @@ import * as tocbot from "tocbot";
 
 export default function Toc() {
   useEffect(() => {
-    // Tocbotの初期化
     tocbot.init({
-      tocSelector: ".toc", // 目次の表示部分のクラス
-      contentSelector: ".post", // 目次を生成する対象のクラス
-      headingSelector: "h2, h3", // 目次に表示する見出しのタグ
+      tocSelector: ".toc", // tell tocbot at which class to make toc
+      contentSelector: ".post", // gather headings in .post
+      headingSelector: "h2, h3", // to be show in toc
     });
 
     // コンポーネントがアンマウントされたときにTocbotを破棄

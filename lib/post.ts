@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 const postPath = path.join(process.cwd(), "post");
 
-export function GetAllPostSlugs() {
+export function GetAllSlugs() {
   return readdirSync(postPath)
     .filter((path) => /\.md?$/.test(path))
     .map((path) => path.replace(/\.md?$/, ""));
@@ -21,7 +21,7 @@ export function GetPostBySlug(slug: string) {
 }
 
 export function GetAllPosts() {
-  const slugs = GetAllPostSlugs();
+  const slugs = GetAllSlugs();
   const posts = slugs.map((slug) => ({ slug, ...GetPostBySlug(slug) }));
 
   // sort by date

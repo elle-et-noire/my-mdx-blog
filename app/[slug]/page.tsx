@@ -1,7 +1,8 @@
-import { GetAllPostSlugs, GetPostBySlug } from "@/lib/post";
+import { GetAllSlugs, GetPostBySlug } from "@/lib/post";
 import Toc from "@/components/toc";
 import Link from "next/link";
 import PostContent from "@/components/post-content";
+import DateInfo from "@/components/date-info";
 
 interface PostPageProps {
   params: Promise<{
@@ -12,7 +13,7 @@ interface PostPageProps {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const slugs = GetAllPostSlugs();
+  const slugs = GetAllSlugs();
   return slugs.map((slug) => {
     return {
       slug: slug
@@ -38,20 +39,19 @@ export default async function PostPage({ params }: PostPageProps) {
         bg-[#fefefe] shadow-[0_0px_3px_0px_rgba(128,128,128,0.5)]
         flex justify-center
         prose max-w-none"
-        // modal window
+      // modal window
       >
         <div className="w-[36rem] md:w-[48rem] font-noto-sans" /* left column */ >
           <h1 className="mt-16 mb-3 font-[600]">{data.title}</h1>
-          <div className="
+          {/* <div className="
             flex justify-start gap-2
             font-[family-name:var(--font-kosugi-maru)] font-[400]
             text-gray-400 italic"
           >
-            <div>
-              <span className="pr-1">投稿日</span>{data.publish.toISOString().split('T')[0]}
-              <span className="pl-2 pr-1">» 最終更新日</span>{data.lastUpdate.toISOString().split('T')[0]}
-            </div>
-          </div>
+            <span className="pr-1">投稿日</span>{data.publish.toISOString().split('T')[0]}
+            <span className="pl-2 pr-1">» 最終更新日</span>{data.lastUpdate.toISOString().split('T')[0]}
+          </div> */}
+          <DateInfo data={data} className="text-base" />
           <div className="
             post font-[500] mt-8 md:w-[43rem]
             prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-[#324e73] prose-h2:pl-4 prose-h2:py-1

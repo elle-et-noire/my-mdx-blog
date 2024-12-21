@@ -1,19 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import DateInfo from "./date-info";
 
-type Post = {
-  slug: string,
-  content: string,
-  data: {
-    [key: string]: string,
-  }
-}
-
-export default function PostCard({ post }: { post: Post }) {
+export default function PostCard({ slug, data }: {
+  slug: string;
+  data: { [key: string]: string };
+}) {
   return (
     <Link
-      href={post.slug}
+      href={slug}
       className="
         no-underline w-full bg-[#fefefe] text-[#324e73] rounded-md border-[#dadfe4] border-[1pt]
         shadow-[0_1px_0px_2px_rgba(128,167,180,1)] overflow-hidden"
@@ -23,17 +19,9 @@ export default function PostCard({ post }: { post: Post }) {
         font-semibold font-[family-name:var(--font-noto-sans)]
         text-lg md:text-xl"
       >
-        {post.data.title}
+        {data.title}
       </h2>
-      <div className="
-        m-0 pl-6 pt-1 pb-2
-        flex justify-start
-        font-[family-name:var(--font-kosugi-maru)] font-[400]
-        text-gray-400 text-sm italic"
-      >
-        <span className="pr-1">投稿日</span>{(new Date(post.data.publish)).toISOString().split('T')[0]}
-        <span className="pl-2 pr-1">» 最終更新日</span>{(new Date(post.data.lastUpdate)).toISOString().split('T')[0]}
-      </div>
+      <DateInfo data={data} className="m-0 pl-6 pt-1 pb-2 text-sm" />
     </Link>
   )
 }

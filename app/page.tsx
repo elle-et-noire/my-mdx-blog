@@ -10,7 +10,7 @@ export default function Home() {
         flex flex-col gap-3 items-center"
     >
       {posts.map((post) => (
-        <PostCard key={post.slug} post={post} />
+        <PostCard key={post.slug} slug={post.slug} data={post.data} />
       ))}
     </div>
   );

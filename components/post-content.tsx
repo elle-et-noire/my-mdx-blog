@@ -1,14 +1,14 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import _Link from "./_link";
-import _Pre from "./_pre";
-import { transformerLineNumbers } from "@rehype-pretty/transformers";
 import { Root } from "hast";
-import rehypeMathJaxSvg from "rehype-mathjax";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
+import { visit } from "unist-util-visit";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import { visit } from "unist-util-visit";
+import rehypePrettyCode from "rehype-pretty-code";
+import { transformerLineNumbers } from "@rehype-pretty/transformers";
+import rehypeSlug from "rehype-slug";
+import rehypeMathJaxSvg from "rehype-mathjax";
+import _Link from "./_link";
+import _Pre from "./_pre";
 
 export default function PostContent({ content }: {
   content: string;
