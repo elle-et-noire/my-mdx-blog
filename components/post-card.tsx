@@ -3,7 +3,6 @@
 import { Post } from "@/types/post";
 import Link from "next/link";
 
-
 function PostCard({
   post,
 }: { post: Post }) {

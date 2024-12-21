@@ -4,7 +4,7 @@ import { cn } from '@/libs/cn';
 import Link from 'next/link';
 
 
-function MyLink({ className, children, href }: {
+function _Link({ className, children, href }: {
   children: string;
   href: string;
   className: string;
@@ -21,4 +21,4 @@ function MyLink({ className, children, href }: {
   )
 }
 
-export default MyLink;
+export default _Link;

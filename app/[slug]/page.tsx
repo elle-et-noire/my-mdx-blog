@@ -7,8 +7,7 @@ import remarkMath from "remark-math";
 import Link from "next/link";
 import rehypeMathJaxSvg from "rehype-mathjax";
 import rehypePrettyCode from "rehype-pretty-code";
-import MyLink from "@/components/my-link";
-// import MyCode from "@/components/my-code";
+import _Link from "@/components/_link";
 import { visit } from 'unist-util-visit';
 import { Root } from 'hast';
 import { Pre } from "@/components/pre";
@@ -54,11 +53,6 @@ export default async function PostPage({ params }: PostPageProps) {
           //   light: "github-light",
           // },
           transformers: [
-            // transformerCopyButton({
-            //   jsx: true,
-            //   visibility: "always",
-            //   feedbackDuration: 3_000,
-            // }),
             transformerLineNumbers({ autoApply: true }),
           ]
         }],
@@ -147,7 +141,7 @@ export default async function PostPage({ params }: PostPageProps) {
               // @ts-expect-error: type is not prepared
               options={options}
               components={{
-                a: MyLink,
+                a: _Link,
                 pre: Pre
                 // code: MyCode,
               }}

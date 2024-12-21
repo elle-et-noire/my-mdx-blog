@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 
-// @ts-expect-error: type is not prepared
-export const CopyButton = ({ className, text }) => {
+
+export const CopyButton = ({ className = "", text = "" }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const copy = async () => {
     await navigator.clipboard.writeText(text);
     setIsCopied(true);
 
+    // wait a while to prevent unintended continuous copying
     setTimeout(() => {
       setIsCopied(false);
     }, 1000);
