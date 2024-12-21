@@ -12,12 +12,16 @@ export default function _Pre(props: PreProps) {
     ["data-language"]: lang = "Shell",
   } = props;
   return (
-    <pre {...props} className="relative shadow-smooth pt-4">
-        <p className="absolute top-[-8pt] left-2 capitalize text-xs font-medium bg-slate-700 text-white p-1 rounded-tl-lg">
+    <>
+      <div className="mb-[-8pt] flex justify-between">
+        <p className="uppercase text-xs font-medium bg-slate-700 text-white p-1 rounded-tl-lg">
           {lang}
         </p>
-        <CopyButton text={raw} className="absolute right-3 top-1 shadow-smooth italic" />
-      {children}
-    </pre>
+        <CopyButton text={raw} className="italic" />
+      </div>
+      <pre {...props} className="">
+        {children}
+      </pre>
+    </>
   );
 }

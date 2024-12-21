@@ -11,15 +11,15 @@ export default function Toc() {
       headingSelector: "h2, h3", // to be show in toc
     });
 
-    // コンポーネントがアンマウントされたときにTocbotを破棄
+    // destroy tocbot if the component was unmounted
     return () => tocbot.destroy();
   }, []);
 
   return (
-    <>
-      <h2 className="text-base text-white text-center bg-[#324e73] py-0.5 font-[300]">目次</h2>
-      <div className="toc px-0 pb-8 text-base"></div>
-    </>
+    <div className="sticky top-0 pt-8 font-system">
+      <h2 className="py-0.5 w-full text-base text-white text-center bg-[#324e73] font-[300]">目次</h2>
+      <div className="toc px-0 pb-8 w-full text-base"></div>
+    </div>
   );
 }
 

@@ -38,7 +38,6 @@ export default async function PostPage({ params }: PostPageProps) {
         mx-auto mt-8 px-4 md:pl-8 md:pr-4 pb-16
         w-[22rem] sm:w-[40rem] md:w-[64rem] rounded-lg
         bg-[#fefefe] shadow-[0_0px_3px_0px_rgba(128,128,128,0.5)]
-        flex justify-center
         prose max-w-none"
       // modal window
       >
@@ -47,8 +46,8 @@ export default async function PostPage({ params }: PostPageProps) {
             <div className="batsu"></div>
           </Link>
         </div>
-        <div className="flex">
-          <div className="relative top-0 left-0 w-full md:w-[60rem] font-noto-sans overflow-hidden" /* left column */ >
+        <div className="grid grid-flow-col justify-stretch">
+          <div className="w-full md:w-[48rem] font-noto-sans overflow-hidden" /* left column */ >
             <h1 className="mb-1 md:mb-3 font-[600] text-lg md:text-4xl">{data.title}</h1>
             <DateInfo data={data} className="text-xs md:text-base" />
             <div className="
@@ -62,10 +61,8 @@ export default async function PostPage({ params }: PostPageProps) {
               <PostContent content={content} />
             </div>
           </div>
-          <div>
-            <div className="hidden md:block sticky top-0 pt-8 ml-8 font-system">
-              <Toc />
-            </div>
+          <div className="hidden md:block w-full md:w-[12rem] pl-4">
+            <Toc />
           </div>
         </div>
       </div>

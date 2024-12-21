@@ -105,13 +105,11 @@
   border-width: 1px;
   box-shadow: 0px 1px 1px 0px #4ba4cc;
   transform: skewX(-10deg);
-  transition-duration: 200ms;
   background-color: #79dcfc;
 }
 
 .post details[open] summary::before {
-  transform: skewX(0deg);
-  transition-duration: 200ms;
+  box-shadow: inset 0px 1px 1px 0px #4ba4cc;
 }
 
 details[open] summary::after {
