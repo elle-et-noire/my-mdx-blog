@@ -26,7 +26,7 @@ export function GetAllPosts() {
 
   // sort by date
   return posts.sort((a, b) =>
-    (new Date(a.data.publish)).getTime()
-    - (new Date(b.data.publish).getTime())
+    (new Date(b.data.publish)).getTime()
+    - (new Date(a.data.publish).getTime())
   );
 }

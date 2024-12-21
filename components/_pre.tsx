@@ -1,15 +1,25 @@
 import { CopyButton } from "./copy-button";
 
-// @ts-expect-error: type is not prepared
-export const _Pre = ({ children, raw, ...props }) => {
-  const lang = props["data-language"];
+interface PreProps extends React.HTMLProps<HTMLPreElement> {
+  raw?: string;
+  ["data-language"]?: string;
+}
+
+export default function _Pre(props: PreProps) {
+  const {
+    children,
+    raw = "",
+    ["data-language"]: lang = "Shell",
+  } = props;
   return (
-    <pre {...props} className={""}>
-      <div className={"code-header static flex justify-between"}>
-        {lang}
-        <CopyButton text={raw} className={""} />
-      </div>
+    <pre {...props} className="relative shadow-smooth pt-4">
+      {/* <div className={"code-header static flex justify-between"}> */}
+        <p className="absolute top-[-8pt] left-2 capitalize text-xs font-medium bg-slate-700 text-white p-1 rounded-tl-lg">
+          {lang}
+        </p>
+        <CopyButton text={raw} className="absolute right-3 top-1 shadow-smooth italic" />
+      {/* </div> */}
       {children}
     </pre>
   );
-};
+}

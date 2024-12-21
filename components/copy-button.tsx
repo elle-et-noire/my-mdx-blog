@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-
 export const CopyButton = ({ className = "", text = "" }) => {
   const [isCopied, setIsCopied] = useState(false);
 
@@ -13,7 +12,7 @@ export const CopyButton = ({ className = "", text = "" }) => {
     // wait a while to prevent unintended continuous copying
     setTimeout(() => {
       setIsCopied(false);
-    }, 1000);
+    }, 700);
   };
 
   return (

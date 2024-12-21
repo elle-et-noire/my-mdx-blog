@@ -10,7 +10,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import _Link from "@/components/_link";
 import { visit } from 'unist-util-visit';
 import { Root } from 'hast';
-import { _Pre } from "@/components/_pre";
+import _Pre from "@/components/_pre";
 import { transformerLineNumbers } from "@rehype-pretty/transformers";
 
 interface PostPageProps {
@@ -41,10 +41,9 @@ export default async function PostPage({ params }: PostPageProps) {
             if (node?.type === "element" && node?.tagName === "pre") {
               const [codeEl] = node.children;
               if (codeEl.type === "element") {
-                if (codeEl.tagName !== "code") return;
-
-              // @ts-expect-error: type is not prepared
-                node.raw = codeEl.children?.[0].value;
+                if (codeEl.tagName == "code")
+                  // @ts-expect-error: type is not prepared
+                  node.raw = codeEl.children?.[0].value;
               }
             }
           });
@@ -64,8 +63,7 @@ export default async function PostPage({ params }: PostPageProps) {
               if (!("data-rehype-pretty-code-figure" in node.properties)) return;
 
               for (const child of node.children) {
-                // @ts-expect-error: type is not prepared
-                if (child.tagName === "pre") {
+                if (child.type === "element" && child.tagName === "pre") {
                   // @ts-expect-error: type is not prepared
                   child.properties["raw"] = node.raw;
                 }
@@ -74,15 +72,6 @@ export default async function PostPage({ params }: PostPageProps) {
             }
           });
         },
-        // () => (tree: Root) => {
-        //   visit(tree, (node) => {
-        //     if (node?.type === "element" && node?.tagName === "button" && "rehype-pretty-code" in node?.properties) {
-        //       node.properties["onClick"] = async () => {
-        //         await navigator.clipboard.writeText(node.data?);
-        //       }
-        //     }
-        //   })
-        // },
         rehypeSlug,
         rehypeMathJaxSvg,
       ],
@@ -144,7 +133,7 @@ export default async function PostPage({ params }: PostPageProps) {
               components={{
                 a: _Link,
                 pre: _Pre,
-                // code: MyCode,
+
               }}
             />
           </div>

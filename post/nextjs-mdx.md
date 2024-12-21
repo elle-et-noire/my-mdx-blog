@@ -1147,10 +1147,9 @@ export default function Home() {
 </details>
 
 
-
 ## シンタックスハイライトを付ける
 
-[Rehype Pretty](https://rehype-pretty.pages.dev/)を利用する。
+[Rehype Pretty Code](https://rehype-pretty.pages.dev/)を利用する。
 
 ```sh
 npm install rehype-pretty-code shiki
@@ -1196,6 +1195,13 @@ npm install rehype-pretty-code shiki
 ```
 
 
+## コードブロックにコピーボタンを付ける
+
+[先人1](https://claritydev.net/blog/copy-to-clipboard-button-nextjs-mdx-rehype)や[先人2](https://ozantekindev.medium.com/how-to-add-a-copy-to-clipboard-button-in-mdx-with-next-js-e1a182f40690)を参考にDOMを操作する。
+
+Rehype Pretty Codeに[Copy Button](https://rehype-pretty.pages.dev/plugins/copy-button/)が実装されているようだが、現時点ではボタンだけ表示されてコードがコピーできなかった。
+
+
 ## 数式を表示する
 
 Next.js 15ではなぜか`rehype-katex`がバグる。`rehype-mathjax`は大丈夫だが、文中数式が勝手に改行されてしまうので`span`要素で囲んでついでにベースラインとスペースを調整するように前処理を行う。
@@ -1216,6 +1222,7 @@ MathJax 3の機能を利用したい場合は`better-react-mathjax`を用いる�
 ## 欧文と和文のスペース
 
 自分で前処理のスクリプトを書く。[先人](https://qiita.com/pecorarista/items/accd492e8d5fb23ff2fa)もいる。
+
 
 ## 参考文献
 
