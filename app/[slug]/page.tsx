@@ -25,16 +25,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const { content, data } = GetPostBySlug(slug);
 
   return (
-    <main className="min-h-screen min-w-max m-0 pb-12 bg-[#a0bac8]">
-      <div className="
-        z-0 fixed top-0 left-0 right-0
-        pt-4 pb-2 w-full
-        bg-[#fefefe] shadow-[0_1px_1px_1px_rgba(0,0,0,0.3)]
-        text-center text-[#112b45] text-2xl font-system
-        underline underline-offset-[12px] decoration-4 decoration-yellow-300"
-      >
-        記事一覧
-      </div>
+    <>
       <div className="
         z-10 fixed top-0 left-0 right-0
         size-full bg-[#76ddfc]
@@ -47,8 +38,9 @@ export default async function PostPage({ params }: PostPageProps) {
         bg-[#fefefe] shadow-[0_0px_3px_0px_rgba(128,128,128,0.5)]
         flex justify-center
         prose max-w-none"
+        // modal window
       >
-        <div className="w-[36rem] md:w-[48rem] font-noto-sans">
+        <div className="w-[36rem] md:w-[48rem] font-noto-sans" /* left column */ >
           <h1 className="mt-16 mb-3 font-[600]">{data.title}</h1>
           <div className="
             flex justify-start gap-2
@@ -77,6 +69,6 @@ export default async function PostPage({ params }: PostPageProps) {
           <div className="batsu"></div>
         </Link>
       </div>
-    </main>
+    </>
   );
 }
