@@ -20,7 +20,6 @@ export default function Home() {
         w-full md:w-[48rem]
         flex flex-col gap-3 items-center"
       >
-        {/* <Copy message="uouo"/> */}
         {posts.map((post) => (
           <PostCard key={post.slug} post={post} />
         ))}
