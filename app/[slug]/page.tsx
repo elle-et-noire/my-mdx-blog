@@ -47,7 +47,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </Link>
         </div>
         <div className="grid grid-flow-col justify-stretch">
-          <div className="w-full md:w-[48rem] font-noto-sans overflow-x-visible" /* left column */ >
+          <div className="w-[20rem] sm:w-[38rem] md:w-[48rem] font-noto-sans overflow-x-visible" /* left column */ >
             <h1 className="mb-1 md:mb-3 font-[600] text-lg sm:text-2xl md:text-4xl">{data.title}</h1>
             <DateInfo data={data} className="text-xs md:text-base" />
             <div className="
