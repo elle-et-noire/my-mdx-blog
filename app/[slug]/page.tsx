@@ -27,27 +27,32 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <>
-      <div className="
-        z-10 fixed top-0 left-0 right-0
-        size-full bg-[#76ddfc]
-        backdrop-filter backdrop-blur-[3px] bg-opacity-15"
-      // glass morphism
+      <div // glass morphism background
+        className="
+          z-10 fixed top-0 left-0 right-0
+          size-full bg-[#76ddfc]
+          backdrop-filter backdrop-blur-[3px] bg-opacity-15
+        "
       />
-      <div className="
-        z-20 relative flex flex-col
-        mx-auto mt-8 px-4 md:pl-16 md:pr-4 pb-16
-        w-[22rem] sm:w-[40rem] md:w-[68rem] rounded-lg
-        bg-[#fefefe] shadow-[0_0px_3px_0px_rgba(128,128,128,0.5)]
-        prose max-w-none"
-      // modal window
+      <div // modal window like
+        className="
+          z-20 relative flex flex-col
+          mx-auto mt-8 px-4 md:pl-16 md:pr-4 pb-16
+          w-[22rem] sm:w-[40rem] md:w-[68rem] rounded-lg
+          bg-[#fefefe] shadow-[0_0px_3px_0px_rgba(128,128,128,0.5)]
+          prose max-w-none
+        "
       >
-        <div className="flex justify-end z-30 sticky top-0 pt-4">
-          <Link href="/" className="h-8">
+        <div // to put close button right
+          className="invisible flex justify-end z-30 sticky top-0 pt-4">
+          <Link href="/" className="visible h-8">
             <div className="batsu"></div>
           </Link>
         </div>
         <div className="grid grid-flow-col justify-stretch">
-          <div className="w-[20rem] sm:w-[38rem] md:w-[48rem] font-noto-sans overflow-x-visible" /* left column */ >
+          <div // left column
+            className="w-[20rem] sm:w-[38rem] md:w-[48rem] font-noto-sans overflow-x-visible"
+          >
             <h1 className="mb-1 md:mb-3 font-[600] text-lg sm:text-3xl md:text-4xl">{data.title}</h1>
             <DateInfo data={data} className="text-xs sm:text-base" />
             <div className="
@@ -61,9 +66,9 @@ export default async function PostPage({ params }: PostPageProps) {
             >
               <PostContent content={content} />
             </div>
-
           </div>
-          <div className="hidden md:block w-full md:w-[12rem] pl-4">
+          <div //right column
+            className="hidden md:block w-full md:w-[12rem] pl-4">
             <Toc />
           </div>
         </div>
