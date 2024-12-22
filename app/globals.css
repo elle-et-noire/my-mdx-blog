@@ -73,7 +73,7 @@
 }
 
 .post p code {
-  @apply bg-[#d9dce1] rounded-md py-1 px-2 mx-1;
+  @apply bg-[#d9dce1] rounded-md py-0.5 px-1 mx-0.5;
 }
 
 .post pre code {
