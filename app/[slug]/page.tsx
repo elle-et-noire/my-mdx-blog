@@ -45,7 +45,7 @@ export default async function PostPage({ params }: PostPageProps) {
       >
         <div // to put close button right
           className="invisible flex justify-end z-30 sticky top-0 pt-4">
-          <Link href="/" className="visible h-8">
+          <Link href="/" className="visible h-8" prefetch={true}>
             <div className="batsu"></div>
           </Link>
         </div>
