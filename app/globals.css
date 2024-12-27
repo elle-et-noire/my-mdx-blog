@@ -80,6 +80,10 @@
   @apply pt-2;
 }
 
+.post pre {
+  @apply bg-[#111430];
+}
+
 .post figure {
   @apply my-0;
 }
