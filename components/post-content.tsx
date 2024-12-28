@@ -64,8 +64,8 @@ export default function PostContent({ content }: {
   return (
     <MDXRemote
       source={content
-        .replace(/\\\(/g, "<span className='inlinemath'>$\\hspace{0.2em}")
-        .replace(/\\\)/g, "\\hspace{0.2em}$</span>")
+        .replace(/\\\(/g, "<span className='inlinemath'>$")
+        .replace(/\\\)/g, "$</span>")
       }
       // @ts-expect-error: type is not prepared
       options={options}

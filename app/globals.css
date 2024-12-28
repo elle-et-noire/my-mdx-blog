@@ -69,7 +69,11 @@
 }
 
 .inlinemath {
-  @apply inline-block align-[-2.5px];
+  @apply inline-block align-middle mx-1;
+}
+
+.post mjx-container {
+  @apply flex justify-center;
 }
 
 .post p code {
