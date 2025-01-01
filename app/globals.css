@@ -54,7 +54,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 5px;
+  width: 2px;
   height: 30px;
   background: #324e73;
   border-radius: 2.5px;
@@ -81,7 +81,7 @@
 }
 
 .post pre code {
-  @apply pt-2;
+  @apply pt-3;
 }
 
 .post pre {

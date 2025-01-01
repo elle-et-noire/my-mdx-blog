@@ -34,7 +34,7 @@ export default function PostContent({ content }: {
           });
         },
         [rehypePrettyCode, {
-          theme: "one-dark-pro",
+          // theme: "one-dark-pro",
           keepBackground: false,
           transformers: [
             transformerLineNumbers({ autoApply: true }),

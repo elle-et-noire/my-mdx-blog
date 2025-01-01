@@ -56,12 +56,15 @@ export default async function PostPage({ params }: PostPageProps) {
             <h1 className="mb-1 md:mb-3 font-[600] text-lg sm:text-3xl md:text-4xl">{data.title}</h1>
             <DateInfo data={data} className="text-xs sm:text-base" />
             <div className="
-              post prose-sm md:prose-base font-[500] mt-8
+              post prose-sm md:prose-base mt-8 font-[500]
               prose-h2:text-[#324e73] prose-h2:border-l-4 prose-h2:border-[#324e73]
               prose-h2:pl-2 sm:prose-h2:pl-4 prose-h2:py-0.5 sm:prose-h2:py-1
               prose-h2:text-base sm:prose-h2:text-2xl
-              hover:prose-a:no-underline prose-a:underline-offset-[5px]
-              prose-pre:my-1 prose-p:my-2 prose-code:before:content-none prose-code:after:content-none
+              prose-a:underline-offset-[5px] prose-a:decoration-[1pt]
+              hover:prose-a:decoration-2 hover:prose-a:font-bold
+              prose-pre:my-2 prose-p:my-2
+              prose-code:before:content-none prose-code:after:content-none
+              prose-code:text-[15px]
               prose-ul:my-2"
             >
               <PostContent content={content} />

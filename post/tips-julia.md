@@ -57,4 +57,4 @@ begin
 end
 ```
 
-順列を生成する関数`perm`の出典は[ここ](https://zenn.dev/ohno/articles/03e65bfa028baa)あるいは[ここ](https://rosettacode.org/wiki/Permutations#Julia)。
+順列を生成する関数`perms`の出典は[ここ](https://zenn.dev/ohno/articles/03e65bfa028baa)あるいは[ここ](https://rosettacode.org/wiki/Permutations#Julia)。
