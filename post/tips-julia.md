@@ -1,6 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
+lastUpdate: 2025-01-03
 ---
 
 ## 構文解析
@@ -58,3 +59,19 @@ end
 ```
 
 順列を生成する関数`perms`の出典は[ここ](https://zenn.dev/ohno/articles/03e65bfa028baa)あるいは[ここ](https://rosettacode.org/wiki/Permutations#Julia)。
+
+
+## 引数の分解
+
+引数に渡されるTupleやPairやVectorを分解して受け取ることができる。
+
+```julia
+d((a, b)::Tuple) = a / b
+d((a, b)::Pair) = b / a
+d((a, b)) = a // b
+@assert d((5, 2)) == 2.5
+@assert d(5 => 2) == 0.4
+@assert d([5, 2]) == 5//2
+```
+
+無名関数で引数を分解するときは`((a, b),) -> a / b`のように`,`を入れる（か引数の組の型を明示する）。
