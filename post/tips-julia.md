@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-03
+lastUpdate: 2025-01-04
 ---
 
 ## 構文解析
@@ -75,3 +75,26 @@ d((a, b)) = a // b
 ```
 
 無名関数で引数を分解するときは`((a, b),) -> a / b`のように`,`を入れる（か引数の組の型を明示する）。
+
+
+## 高次元配列の生成
+
+for文でイテレータを複数書けばそれらはより高次の`axes`を走る。
+またブロードキャストも引数の`AbstractArray`の`axes`の方向に準拠する。
+
+```julia
+v = [i * j for i in 1:3, j in 1:3]
+@assert v == [1 2 3; 2 4 6; 3 6 9]
+v = (1:3) .* (1:3)'
+@assert v == [1 2 3; 2 4 6; 3 6 9]
+```
+2つ目の例では`.`なしでも行列のかけ算と見なされて同じ結果になる。
+
+
+高階のKronecker delta \(\delta_{i_1\dots i_n}\ (i_j \in \{1,\dots,d_j\})\)は以下のように生成できる。
+
+```julia
+dims = [2, 4, 2, 4]
+map(t -> Int(all(==(t[1]), t)),
+    Iterators.product(Base.OneTo.(dims)...))
+```
