@@ -107,9 +107,10 @@ map(t -> Int(all(==(t[1]), t)),
 
 ```julia
 function classify(S, R)
+  isempty(S) && return ([], [])
   indices = zeros(Int, length(S))
   j = 1
-  while !isnothing(j) && j <= length(S)
+  while !isnothing(j)
     indices[j] = j
     Rj = filter(k -> indices[k] == 0 && R(S[j], S[k]), j+1:lastindex(S))
     indices[Rj] .= j
