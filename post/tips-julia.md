@@ -109,17 +109,12 @@ map(t -> Int(all(==(t[1]), t)),
 function classify(S, R)
   indices = zeros(Int, length(S))
   j = 1
-  while j <= length(S)
+  while !isnothing(j) && j <= length(S)
     indices[j] = j
-    for k in j+1:lastindex(S)
-      indices[k] != 0 && continue
-      R(S[j], S[k]) && (indices[k] = j)
-    end
-    while j <= length(S) && indices[j] != 0
-      j += 1
-    end
+    Rj = filter(k -> indices[k] == 0 && R(S[j], S[k]), j+1:lastindex(S))
+    indices[Rj] .= j
+    j = findnext(iszero, indices, j + 1)
   end
-
   reprinds = unique(indices)
   [S[filter(j -> indices[j] == r, eachindex(S))] for r in reprinds], S[reprinds]
 end
