@@ -100,3 +100,33 @@ dims = [2, 4, 2, 4]
 map(t -> Int(all(==(t[1]), t)),
     Iterators.product(Base.OneTo.(dims)...))
 ```
+
+## 同値類への分割
+
+[Juliaで集合を同値類に分割する](https://zenn.dev/ohno/articles/b83defa73d7e7c)という記事に触発されて実装してみた。`R`を呼び出す回数をなるべく減らしてある。
+
+```julia
+function classify(S, R)
+  indices = zeros(Int, length(S))
+  j = 1
+  while j <= length(S)
+    indices[j] = j
+    for k in j+1:lastindex(S)
+      indices[k] != 0 && continue
+      R(S[j], S[k]) && (indices[k] = j)
+    end
+    while j <= length(S) && indices[j] != 0
+      j += 1
+    end
+  end
+
+  reprinds = unique(indices)
+  [S[filter(j -> indices[j] == r, eachindex(S))] for r in reprinds], S[reprinds]
+end
+
+begin
+  A = [1, 7, 3, 6, 10, 9]
+  f(i, j) = iseven(i) == iseven(j)
+  @assert classify(A, f) == ([[1, 7, 3, 9], [6, 10]], [1, 6])
+end
+```
