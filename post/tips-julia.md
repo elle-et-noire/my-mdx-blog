@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-04
+lastUpdate: 2025-01-05
 ---
 
 ## 構文解析
@@ -30,6 +30,8 @@ julia> Meta.@lower [1,2][1] = 2
 ```
 
 配列の要素取得は`getindex`を、代入は`setindex!`をオーバーロードすればよいと分かる。
+
+`@which`でもその記号が呼び出している関数名を教えてくれるが、具体的にどう用いられているかは`Meta.@lower`を見る方が分かりやすい。
 
 
 ## Dictのブロードキャスト
