@@ -126,3 +126,28 @@ begin
   @assert classify(A, f) == ([[1, 7, 3, 9], [6, 10]], [1, 6])
 end
 ```
+
+`Set`や`unique`といった重複を取り除く関数も用意されているが、これらを同値類への分割に利用するには、商の型を用意してその上への`hash`を定義するか、元の型に対して`isequal`をオーバーロードするかしなければいけない（`isequal`をオーバーロードしたら`hash`もオーバーロードする必要がある[らしい](https://zenn.dev/kurusugawa/articles/hash_on_julia)）。`sort`関数が`lt`や`by`をで比較関数やハッシュ関数を設定できるのとは大違いである。`hash`や`isequal`を引数で受け取って同値類へ分割するには以下のようにする。
+
+```julia
+function classify(S; hash=identity, isequal=isequal)
+  isempty(S) && return ([], [])
+  indices = zeros(Int, length(S))
+  reprs = hash.(S)
+  j = 1
+  while !isnothing(j)
+    indices[j] = j
+    Rj = filter(k -> iszero(indices[k]) && isequal(reprs[j], reprs[k]), j+1:lastindex(S))
+    indices[Rj] .= j
+    j = findnext(iszero, indices, j + 1)
+  end
+  reprinds = unique(indices)
+  [S[filter(j -> indices[j] == r, eachindex(S))] for r in reprinds], S[reprinds]
+end
+
+begin
+  A = [1, 7, 3, 6, 10, 9]
+  @assert classify(A; hash=iseven) == ([[1, 7, 3, 9], [6, 10]], [1, 6])
+end
+```
+
