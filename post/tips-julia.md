@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-05
+lastUpdate: 2025-01-07
 ---
 
 ## 構文解析
