@@ -39,7 +39,7 @@ export default async function PostPage({ params }: PostPageProps) {
           z-20 relative flex flex-col
           mx-auto mt-8 px-4 md:pl-16 md:pr-4 pb-16
           w-[22rem] sm:w-[40rem] md:w-[68rem] rounded-lg
-          bg-[#fefefe] shadow-[0_0px_3px_0px_rgba(128,128,128,0.5)]
+          bg-[#f8f8f8] shadow-[0_0px_3px_0px_rgba(128,128,128,0.5)]
           prose max-w-none
         "
       >

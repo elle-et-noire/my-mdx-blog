@@ -117,7 +117,7 @@
   border-width: 1px;
   box-shadow: 0px 1px 1px 0px #4ba4cc;
   transform: skewX(-10deg);
-  background-color: #79dcfc;
+  background-color: #fff;
 }
 
 .post details[open] summary::before {
