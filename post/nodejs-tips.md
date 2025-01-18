@@ -1,7 +1,7 @@
 ---
 title: Node.js開発Tips
 publish: 2024-12-19
-lastUpdate: 2025-01-09
+lastUpdate: 2025-01-18
 tags:
 - nodejs
 - web
@@ -33,7 +33,7 @@ ps aux | grep next
 ```sh
 kill -9 000000
 ```
-で切る。
+で切る。プロセス名が分かっている場合は`pkill`を用いる。
 
 立てたプロセスとは違うプロセスでサーバーが動いている場合もある。Next.jsの場合は`next-server (v15.1.1)`のような名前のプロセスを切る。
 
