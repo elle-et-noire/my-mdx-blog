@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-16
+lastUpdate: 2025-01-19
 ---
 
 ## 構文解析
@@ -154,3 +154,26 @@ end
 ## SVGの生成
 
 [BenLauwens/NativeSVG.jl](https://github.com/BenLauwens/NativeSVG.jl)を用いる。
+
+## Eratosthenesの篩
+
+特に工夫をしなければ以下のような実装になるはず。
+
+```julia
+function sieve(x)
+  flags = fill(true, x)
+  flags[1] = false
+  sqrtx = floor(Int, sqrt(x))
+  for p in 2:sqrtx
+    !flags[p] && continue
+    for m in p^2:p:x
+      flags[m] = false
+    end
+  end
+  findall(flags)
+end
+
+begin
+  @assert sieve(10) == [2, 3, 5, 7]
+end
+```
