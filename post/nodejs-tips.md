@@ -1,7 +1,7 @@
 ---
 title: Node.js開発Tips
 publish: 2024-12-19
-lastUpdate: 2025-01-18
+lastUpdate: 2025-01-22
 tags:
 - nodejs
 - web
@@ -56,3 +56,18 @@ mkdir uouo
 cd $_
 ```
 で`uouo`へ移動できる。フォルダ名が特殊文字を含む場合は`cd "$_"`とする。
+
+## 画像の確認
+
+ターミナルで作業していて画像を確認したくなった際は[sxiv](https://manpages.ubuntu.com/manpages/xenial/man1/sxiv.1.html)を用いる。
+```sh
+sudo apt install sxiv
+sxiv uo.png
+```
+
+## SSH接続でXを転送する
+
+- sshのconfigで`ForwardX11 yes`を設定する
+- 接続時にX転送を許可する: `ssh -X uouo`
+
+のいずれかを行う（[参考](https://kazuhira-r.hatenablog.com/entry/2021/01/14/234921)）。
