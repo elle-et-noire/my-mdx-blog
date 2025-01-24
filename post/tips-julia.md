@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-19
+lastUpdate: 2025-01-24
 ---
 
 ## 構文解析
@@ -157,7 +157,7 @@ end
 
 ## Eratosthenesの篩
 
-特に工夫をしなければ以下のような実装になるはず。
+特に工夫をしなければ以下のような実装になるはず。`m`が`p^2`から動き始めるのは、`p^2`より小さい合成数は`p`より小さい素数ですでに割られているはずだからである。
 
 ```julia
 function sieve(x)
@@ -175,5 +175,22 @@ end
 
 begin
   @assert sieve(10) == [2, 3, 5, 7]
+end
+```
+
+2の倍数判定を省略すると以下のようになる。`flags[j]`に`2j+1`が素数かどうかのフラグが格納されている。`(2j+1)^2 == 2(2j*(j+1)) + 1`なので、`m`は`2j*(j+1)`から動き始める。
+
+```julia
+function sieve1(x)
+  flags = fill(true, (x - 1) ÷ 2)
+  sqrtx = floor(Int, sqrt(x))
+  for j in 1:sqrtx÷2
+    !flags[j] && continue
+    for m in (2j*(j+1)):(2j+1):lastindex(flags)
+      flags[m] = false
+    end
+  end
+  v = 2findall(flags) .+ 1
+  pushfirst!(v, 2)
 end
 ```
