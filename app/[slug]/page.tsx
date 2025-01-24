@@ -64,7 +64,6 @@ export default async function PostPage({ params }: PostPageProps) {
               hover:prose-a:no-underline
               prose-pre:my-2 prose-p:my-2
               prose-code:before:content-none prose-code:after:content-none
-              prose-code:text-[15px]
               prose-ul:my-2"
             >
               <PostContent content={content} />

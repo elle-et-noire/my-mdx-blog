@@ -76,12 +76,17 @@
   @apply flex justify-center;
 }
 
-.post p code {
-  @apply bg-[#d9dce1] rounded-md py-0.5 px-1 mx-0.5;
+.post p code,
+.post li code {
+  @apply bg-[#d9dce1] rounded-md py-0.5 px-1 mx-0.5 text-base;
 }
 
 .post pre code {
-  @apply pt-3;
+  @apply pt-3 text-base;
+}
+
+.post h2 code {
+  @apply text-2xl;
 }
 
 .post pre {
