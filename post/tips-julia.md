@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-24
+lastUpdate: 2025-01-26
 ---
 
 ## 構文解析
@@ -192,5 +192,89 @@ function sieve1(x)
   end
   v = 2findall(flags) .+ 1
   pushfirst!(v, 2)
+end
+```
+
+2,3,5の倍数まであらかじめ除いておくと、30でわった余りが1,7,11,13,17,19,23,29のものだけ気にすればよい（[参考](https://qiita.com/peria/items/54499b9ce9d5c1e93e5a)）。
+```julia
+function bit_to_index(b)
+  dict = Dict([1 << j => j for j in 0:7]...)
+  get(dict, b, -1)
+end
+
+function sieve2(x)
+  k_mod30 = [1, 7, 11, 13, 17, 19, 23, 29]
+  c1 = [6, 4, 2, 4, 2, 4, 6, 2]
+  c0 = [
+    [0, 0, 0, 0, 0, 0, 0, 1], [1, 1, 1, 0, 1, 1, 1, 1],
+    [2, 2, 0, 2, 0, 2, 2, 1], [3, 1, 1, 2, 1, 1, 3, 1],
+    [3, 3, 1, 2, 1, 3, 3, 1], [4, 2, 2, 2, 2, 2, 4, 1],
+    [5, 3, 1, 4, 1, 3, 5, 1], [6, 4, 2, 4, 2, 4, 6, 1],
+  ]
+  k_mask = [
+    [0xfe, 0xfd, 0xfb, 0xf7, 0xef, 0xdf, 0xbf, 0x7f],
+    [0xfd, 0xdf, 0xef, 0xfe, 0x7f, 0xf7, 0xfb, 0xbf],
+    [0xfb, 0xef, 0xfe, 0xbf, 0xfd, 0x7f, 0xf7, 0xdf],
+    [0xf7, 0xfe, 0xbf, 0xdf, 0xfb, 0xfd, 0x7f, 0xef],
+    [0xef, 0x7f, 0xfd, 0xfb, 0xdf, 0xbf, 0xfe, 0xf7],
+    [0xdf, 0xf7, 0x7f, 0xfd, 0xbf, 0xfe, 0xef, 0xfb],
+    [0xbf, 0xfb, 0xf7, 0x7f, 0xfe, 0xef, 0xdf, 0xfd],
+    [0x7f, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd, 0xfe],
+  ]
+  x > 10000000000 && return
+
+  r = x % 30
+  size = x ÷ 30 + (r != 0)
+  flags = fill(0xff, size)
+  if r != 0
+    flags[end] = if r <= 1
+      0x0
+    elseif r <= 7
+      0x1
+    elseif r <= 11
+      0x3
+    elseif r <= 13
+      0x7
+    elseif r <= 17
+      0xf
+    elseif r <= 19
+      0x1f
+    elseif r <= 23
+      0x3f
+    elseif r <= 29
+      0x7f
+    end
+  end
+
+  flags[1] = 0xfe
+  sqrt_x = ceil(Int, sqrt(x) + 0.1)
+  sqrt_xi = sqrt_x ÷ 30 + 1
+  for i in 0:sqrt_xi-1
+    flag = flags[i+1]
+    while flag != 0
+      lsb = flag & (-flag) # extract the right-most 1 in flag
+      ibit = bit_to_index(lsb)
+      m = k_mod30[ibit+1]
+
+      j = i * (30i + 2m) + m^2 ÷ 30
+      k = ibit
+      while j < length(flags)
+        flags[j+1] &= k_mask[ibit+1][k+1]
+
+        j += i * c1[k+1] + c0[ibit+1][k+1]
+        k = (k + 1) & 7
+      end
+
+      flag &= flag - 1
+    end
+  end
+
+  primes = [2, 3, 5]
+  for j in eachindex(flags), k in eachindex(k_mod30)
+    if flags[j] & (1 << (k - 1)) != 0
+      push!(primes, 30(j - 1) + k_mod30[k])
+    end
+  end
+  primes
 end
 ```
