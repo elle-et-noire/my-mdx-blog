@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-26
+lastUpdate: 2025-01-27
 ---
 
 ## 構文解析
@@ -227,22 +227,11 @@ function sieve2(x)
   size = x ÷ 30 + (r != 0)
   flags = fill(0xff, size)
   if r != 0
-    flags[end] = if r <= 1
-      0x0
-    elseif r <= 7
-      0x1
-    elseif r <= 11
-      0x3
-    elseif r <= 13
-      0x7
-    elseif r <= 17
-      0xf
-    elseif r <= 19
-      0x1f
-    elseif r <= 23
-      0x3f
-    elseif r <= 29
-      0x7f
+    for j in eachindex(k_mod30)
+      if r <= k_mod30[j]
+        flags[end] = UInt8((1 << (j - 1)) - 1)
+        break
+      end
     end
   end
 
@@ -265,7 +254,7 @@ function sieve2(x)
         k = (k + 1) & 7
       end
 
-      flag &= flag - 1
+      flag &= flag - 1 # eliminate the right-most 1 in flag
     end
   end
 
