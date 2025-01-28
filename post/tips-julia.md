@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-27
+lastUpdate: 2025-01-28
 ---
 
 ## 構文解析
@@ -195,63 +195,80 @@ function sieve1(x)
 end
 ```
 
-2,3,5の倍数まであらかじめ除いておくと、30でわった余りが1,7,11,13,17,19,23,29のものだけ気にすればよい（[参考](https://qiita.com/peria/items/54499b9ce9d5c1e93e5a)）。
+2,3,5の倍数まであらかじめ除いておくと、30でわった余りが1,7,11,13,17,19,23,29の8通りだけ気にすればよい（[参考](https://qiita.com/peria/items/54499b9ce9d5c1e93e5a)）。\(2^8\)は十分整数型で表せるので、各数が合成数かどうかのフラグをbit列として整数型に格納して処理できる（つまり30でわった商それぞれに`UInt8`型の値が1つずつ対応する。例えば`[0b00001000, 0b01000000]`は`13`と`53`にフラグが立っている）。
+
+1. **篩い始めの位置** \
+素数\(p\)で篩にかけていく際、
+$p = 30q + r_j,\quad r_j \in \{1, 7, 11, 13, 17, 19, 23, 29\}$
+に対して篩い始めの\(p^2\)が格納されている場所は
+$p^2 = 30(30q^2 + 2q r_j + \lfloor r_j^2 / 30 \rfloor) + (r_j^2 \mod 30)$
+から`30q^2 + 2q * r[j] + r[j]^2 ÷ 30`番目の`UInt8`の`r[j]^2 % 30`ビット目と分かる。
+
+2. **篩う処理** \
+素数\(p = 30q + r_j\)に\(n = 30q_n + r_k\)をかけた合成数\(pn\)を篩うことを考える。\(pn = 30q_{pn} + (r_j r_k \mod 30)\)となる（ただし\(q_{pn} = \lfloor pn / 30 \rfloor\)）ので、`flags[q_pn]`の`r[j] * r[k] % 30`に対応するビットを`0`にすればよい（`r[j] * r[k] % 30`が再び`r`に含まれることは\(\mathbb{Z}_{30}\)の乗法群の構造が保証してくれる）。`r[j] * r[k] % 30`を\(8\times 8\)行列`r_rr[j,k]`で取り出せるようにしておくと同じ計算を何度もせずに済む。
+
+3. **次に篩う位置** \
+\(pn\)を篩ったら次は\(pn'\)を篩いたい。ここで\(n' = 30q_n + r_{k+1}\)は\(30q + \{1,7,11,13,17,19,23,29\}\)で表される整数で\(n\)の次に小さいものである（ただし\(r_{k+1} \in \{7,11,13,17,19,23,29,31\}\)）。そのためには\(q_{pn'} = \lfloor pn' / 30 \rfloor\)を得る必要があるが、これは差分を計算するとよい：
+$\begin{aligned}
+\lfloor pn'/30 \rfloor - \lfloor pn/30 \rfloor &= \left\lfloor \dfrac{(30q + r_j)(30q_n + r_{k+1})}{30} \right\rfloor - \left\lfloor \dfrac{(30q + r_j)(30q_n + r_{k})}{30} \right\rfloor \\[5pt]
+& = q(r_{k+1} - r_k) + \left\lfloor \dfrac{r_j r_{k+1}}{30} \right\rfloor - \left\lfloor \dfrac{r_j r_k}{30} \right\rfloor.
+\end{aligned}$
+\(r_{k+1} - r_k\)を`dr[k]`に、\(\left\lfloor \dfrac{r_j r_{k+1}}{30} \right\rfloor - \left\lfloor \dfrac{r_j r_k}{30} \right\rfloor\)を`dqrr[j,k]`にそれぞれ格納しておくとやはり計算を節約できる。ビット位置については`k = (k+1) % 8`でよい。
+
+以上の内容をコードに落とすと以下のようになる（Juliaが1-indexedであるため上の疑似コードからインデックスが若干ずれる）。また`r,dr,dqrr,r_rr`は長さが決まっていて頻繁にアクセスするので`StaticArrays.SArray`として定義することで大幅に高速化できる。
 ```julia
-function bit_to_index(b)
-  dict = Dict([1 << j => j for j in 0:7]...)
-  get(dict, b, -1)
+using StaticArrays
+
+function pow2_ind(x)
+  for j in 0:7
+    if x == 1 << j
+      return j
+    end
+  end
 end
 
 function sieve2(x)
-  k_mod30 = [1, 7, 11, 13, 17, 19, 23, 29]
-  c1 = [6, 4, 2, 4, 2, 4, 6, 2]
-  c0 = [
-    [0, 0, 0, 0, 0, 0, 0, 1], [1, 1, 1, 0, 1, 1, 1, 1],
-    [2, 2, 0, 2, 0, 2, 2, 1], [3, 1, 1, 2, 1, 1, 3, 1],
-    [3, 3, 1, 2, 1, 3, 3, 1], [4, 2, 2, 2, 2, 2, 4, 1],
-    [5, 3, 1, 4, 1, 3, 5, 1], [6, 4, 2, 4, 2, 4, 6, 1],
+  r = @SVector [1, 7, 11, 13, 17, 19, 23, 29]
+  all1::UInt8 = (1 << length(r)) - 1 # 0b11111111
+  dr = @SVector [mod(r[mod1(j + 1, end)] - r[j], 30) for j in 1:8] # if we replace `1:8` with `eachindex(r)`, the code somehow fails
+  r1 = r .+ dr
+  dqrr = @SMatrix [
+    fld(r[j] * r1[k], 30) - fld(r[j] * r[k], 30)
+    for j in 1:8, k in 1:8
   ]
-  k_mask = [
-    [0xfe, 0xfd, 0xfb, 0xf7, 0xef, 0xdf, 0xbf, 0x7f],
-    [0xfd, 0xdf, 0xef, 0xfe, 0x7f, 0xf7, 0xfb, 0xbf],
-    [0xfb, 0xef, 0xfe, 0xbf, 0xfd, 0x7f, 0xf7, 0xdf],
-    [0xf7, 0xfe, 0xbf, 0xdf, 0xfb, 0xfd, 0x7f, 0xef],
-    [0xef, 0x7f, 0xfd, 0xfb, 0xdf, 0xbf, 0xfe, 0xf7],
-    [0xdf, 0xf7, 0x7f, 0xfd, 0xbf, 0xfe, 0xef, 0xfb],
-    [0xbf, 0xfb, 0xf7, 0x7f, 0xfe, 0xef, 0xdf, 0xfd],
-    [0x7f, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd, 0xfe],
-  ]
-  x > 10000000000 && return
 
-  r = x % 30
-  size = x ÷ 30 + (r != 0)
-  flags = fill(0xff, size)
-  if r != 0
-    for j in eachindex(k_mod30)
-      if r <= k_mod30[j]
-        flags[end] = UInt8((1 << (j - 1)) - 1)
-        break
-      end
+  r_ind = Dict([r[j] => (j - 1) for j in eachindex(r)]...)
+  r_rr = @SMatrix [
+    UInt8(all1 ⊻ (1 << r_ind[r[j]*r[k]%30]))
+    for j in 1:8, k in 1:8
+  ]
+
+  flags = fill(all1, cld(x, 30))
+  rx = x % 30
+  if rx != 0
+    for j in eachindex(r)
+      rx >= r[j] && continue
+      flags[end] = UInt8((1 << (j - 1)) - 1)
+      break
     end
   end
+  flags[1] ⊻= 0b00000001 # 1 is not a prime
 
-  flags[1] = 0xfe
-  sqrt_x = ceil(Int, sqrt(x) + 0.1)
-  sqrt_xi = sqrt_x ÷ 30 + 1
-  for i in 0:sqrt_xi-1
-    flag = flags[i+1]
+  q_sqrtx = floor(Int, sqrt(x)) ÷ 30
+  l_flags = length(flags)
+  for q in 0:q_sqrtx
+    flag = flags[q+1]
+
     while flag != 0
-      lsb = flag & (-flag) # extract the right-most 1 in flag
-      ibit = bit_to_index(lsb)
-      m = k_mod30[ibit+1]
+      j = pow2_ind(flag & (-flag)) # p == 30q + r[j+1]
+      m = r[j+1]
+      q_pn = q * (30q + 2m) + m^2 ÷ 30 # initially q_pn == p^2 ÷ 30
+      k = j
 
-      j = i * (30i + 2m) + m^2 ÷ 30
-      k = ibit
-      while j < length(flags)
-        flags[j+1] &= k_mask[ibit+1][k+1]
-
-        j += i * c1[k+1] + c0[ibit+1][k+1]
-        k = (k + 1) & 7
+      while q_pn < l_flags
+        flags[q_pn+1] &= r_rr[j+1, k+1]
+        q_pn += q * dr[k+1] + dqrr[j+1, k+1]
+        k = (k + 1) & 7 # coincidentally(?), the order of the multiplicative group of Z30 is 2^3-1
       end
 
       flag &= flag - 1 # eliminate the right-most 1 in flag
@@ -259,9 +276,9 @@ function sieve2(x)
   end
 
   primes = [2, 3, 5]
-  for j in eachindex(flags), k in eachindex(k_mod30)
-    if flags[j] & (1 << (k - 1)) != 0
-      push!(primes, 30(j - 1) + k_mod30[k])
+  for q in eachindex(flags), j in eachindex(r)
+    if flags[q] & (1 << (j - 1)) != 0
+      push!(primes, 30(q - 1) + r[j])
     end
   end
   primes
