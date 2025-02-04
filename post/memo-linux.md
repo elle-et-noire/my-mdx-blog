@@ -1,14 +1,12 @@
 ---
-title: Node.js開発Tips
+title: Memo of Linux
 publish: 2024-12-19
-lastUpdate: 2025-01-22
+lastUpdate: 2025-02-04
 tags:
-- nodejs
-- web
 - terminal
 ---
 
-## パッケージアップデート
+## npmパッケージアップデート
 
 [参考](https://qiita.com/sugurutakahashi12345/items/df736ddaf65c244e1b4f)
 
@@ -72,4 +70,16 @@ sxiv uo.png
 - sshのconfigで`ForwardX11 yes`を設定する
 - 接続時にX転送を許可する: `ssh -X uouo`
 
-のいずれかを行う（[参考](https://kazuhira-r.hatenablog.com/entry/2021/01/14/234921)）。
+のいずれかを行う（[参考](https://kazuhira-r.hatenablog.com/entry/2021/01/14/234921)）。前者を設定しておく方が便利。
+
+なお、手元の環境では、WSLからSSH接続する分には`ForwardX11 yes`だけで十分だが、Windows TerminalからSSH接続する際には加えて`ForwardX11Trusted yes`も設定する必要があった（[参考](https://obel.hatenablog.jp/entry/20230207/1675713600)）。これを設定しておいてWindows Terminal上で`code --folder-uri vscode-remote://ssh-remote+uouo/home/lomega/`のように接続すると、VSCodeをRemote SSH経由で起動でき、ターミナルでX11を利用した操作（主にgnuplot）も可能となる。
+
+
+## 解凍
+
+`tar.gz`ファイルを解凍する場合：
+```sh
+tar -zxvf xxxx.tar.gz
+```
+
+[参考](https://qiita.com/supersaiakujin/items/c6b54e9add21d375161f)
