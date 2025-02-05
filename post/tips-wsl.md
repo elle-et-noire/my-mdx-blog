@@ -1,10 +1,12 @@
 ---
-title: Memo of Linux
+title: Tips for WSL
 publish: 2024-12-19
-lastUpdate: 2025-02-04
+lastUpdate: 2025-02-05
 tags:
 - terminal
 ---
+
+いくつかはWSLに特有であり、いくつかは普遍的にLinuxで使える。
 
 ## npmパッケージアップデート
 
@@ -65,6 +67,11 @@ sudo apt install sxiv
 sxiv uo.png
 ```
 
+PDFをターミナルから確認したくなったとき、WSLならWindowsのPDFビューワーを起動するという選択肢がある。SumatraPDFならPDFの変更を検知してくれるため、TeXなどで資料を作る際の見た目の確認が容易である。以下の文言を起動時に読み込まれるファイル（`.bashrc`とか`.zshrc`とか）に書いておくと便利。
+```sh
+alias sumatra="/mnt/c/Users/lomega/AppData/Local/SumatraPDF/SumatraPDF.exe"
+```
+
 ## SSH接続でXを転送する
 
 - sshのconfigで`ForwardX11 yes`を設定する
@@ -83,3 +90,18 @@ tar -zxvf xxxx.tar.gz
 ```
 
 [参考](https://qiita.com/supersaiakujin/items/c6b54e9add21d375161f)
+
+
+## カーネルのバージョン確認
+
+[参考](https://qiita.com/h_tyokinuhata/items/0683e0132645bc36d9d3)
+
+`uname`(unix name?)コマンドでハードウェア、カーネル、OSの情報を得られる。
+```sh
+uname -a
+```
+
+OSの情報を詳しく確認するには`/etc/os-release`を確認する。
+```sh
+cat /etc/os-release
+```

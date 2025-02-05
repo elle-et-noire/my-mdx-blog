@@ -1,5 +1,5 @@
 ---
-title: Memo of Typst
+title: Tips for Typst
 publish: 2025-01-23
 ---
 

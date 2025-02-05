@@ -1,5 +1,5 @@
 ---
-title: Memo of Rust
+title: Tips for Rust
 publish: 2025-02-03
 ---
 
