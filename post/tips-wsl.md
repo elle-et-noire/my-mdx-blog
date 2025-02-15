@@ -1,7 +1,7 @@
 ---
 title: Tips for WSL
 publish: 2024-12-19
-lastUpdate: 2025-02-05
+lastUpdate: 2025-02-16
 tags:
 - terminal
 ---
@@ -109,3 +109,21 @@ cat /etc/os-release
 ## ファイルの種類
 
 `file`コマンドを用いることで、例えば実行ファイルがどのような環境（OS、CPU）で実行できるかを表示できる。
+
+## WSL2のディスクサイズ最適化
+
+[参考](https://zenn.dev/anko/articles/976d904e53d87e#wsl2-%E3%81%AE%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E3%82%B5%E3%82%A4%E3%82%BA%E3%82%92%E6%9C%80%E9%81%A9%E5%8C%96%E3%81%99%E3%82%8B)
+
+WSL上でファイルを削除してもエクスプローラーで確認すると容量が解放されていないことが分かります。ディスクイメージを最適化するには以下のようにします。
+```sh
+wsl --shutdown
+diskpart
+```
+でdiskpartのウィンドウが出るので移動します。以下の1行目で入力するディスクイメージのパスは、例えばWizTreeなどで一番容量を食っているファイルを見つけることですばやく確認できます。
+```sh
+select vdisk file="C:\Users\lomega\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_xxxxxxxxxxxxx\LocalState\ext4.vhdx"
+attach vdisk readonly
+compact vdisk
+detach vdisk
+exit
+```
