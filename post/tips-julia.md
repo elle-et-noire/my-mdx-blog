@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-01-28
+lastUpdate: 2025-02-18
 ---
 
 ## 構文解析
@@ -282,5 +282,35 @@ function sieve2(x)
     end
   end
   primes
+end
+```
+
+## 継続渡し
+
+Juliaで継続渡しをするときはdo文を使うとシナジーを感じられる（けど`k`を第一引数に置かないといけないのでラッパー関数をdefault引数で済ませるというのがちょっとやりづらい）。以下は階乗を継続渡しで計算するコード。
+
+```julia
+factorial(k=identity; n) =
+  if n == 0
+    k(1)
+  else
+    factorial(; n=n - 1) do x
+      k(n * x)
+    end
+  end
+
+begin
+  @assert factorial(n=6) == 720
+end
+```
+
+## フィボナッチ数
+
+関数型言語的に書くと引数でやりくりすることになる。
+```julia
+fib(n, a=0, b=1) = n == 0 ? a : fib(n - 1, b, a + b)
+
+begin
+  @assert fib.(1:5) == [1,1,2,3,5]
 end
 ```
