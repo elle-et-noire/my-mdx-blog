@@ -1,7 +1,7 @@
 ---
 title: Tips for WSL
 publish: 2024-12-19
-lastUpdate: 2025-02-16
+lastUpdate: 2025-02-18
 tags:
 - terminal
 ---
@@ -127,3 +127,7 @@ compact vdisk
 detach vdisk
 exit
 ```
+
+## 画面を消去する
+
+Windowsのコマンドプロンプトの`cls`に対応するものはLinuxの`clear`または`Ctrl+L`である。`reset`はシェルの初期化を行うと説明されるが、例えばPATHなどの変数は`reset`前のまま保持される。
