@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useEffect } from "react";
-import * as tocbot from "tocbot";
+import tocbot from "tocbot";
 
 export default function Toc() {
   useEffect(() => {
     tocbot.init({
       tocSelector: ".toc", // tell tocbot at which class to make toc
       contentSelector: ".post", // gather headings in .post
-      headingSelector: "h2, h3", // to be show in toc
+      headingSelector: "h2, h3",
+      tocScrollingWrapper: null
     });
 
     // destroy tocbot if the component was unmounted
