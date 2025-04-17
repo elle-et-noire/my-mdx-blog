@@ -1,7 +1,7 @@
 ---
 title: Tips for WSL
 publish: 2024-12-19
-lastUpdate: 2025-02-18
+lastUpdate: 2025-04-17
 tags:
 - terminal
 ---
@@ -72,6 +72,14 @@ PDFをターミナルから確認したくなったとき、WSLならWindowsのP
 alias sumatra="/mnt/c/Users/lomega/AppData/Local/SumatraPDF/SumatraPDF.exe"
 ```
 
+Ubuntu上で使えるPDFビューワーとして[zathura](https://pwmt.org/projects/zathura/)がある。
+```sh
+sudo apt install zathura
+zathura uo.pdf
+```
+SumatraPDFと同じくPDFの変更を検知してくれる。
+よい点として、VimのキーバインドでPDFをスクロールできる（SumatraPDFは`j`,`k`によるスクロールには対応している）。`q`で抜けられる。`--fork`オプションでバックグラウンドで起動できる。ファイル名をTabで補完するときにPDFしか候補に現れないのが地味に便利（LaTeXで作業しているときの`out`の中などはごちゃごちゃしがちなので）。
+
 ## SSH接続でXを転送する
 
 - sshのconfigで`ForwardX11 yes`を設定する
@@ -131,3 +139,66 @@ exit
 ## 画面を消去する
 
 Windowsのコマンドプロンプトの`cls`に対応するものはLinuxの`clear`または`Ctrl+L`である。`reset`はシェルの初期化を行うと説明されるが、例えばPATHなどの変数は`reset`前のまま保持される。
+
+## Windowsのブラウザで開く
+
+`wslu`というユーティリティ群の中にある`wslview`が使える。
+```sh
+sudo apt install wslu
+export BROWSER=/usr/bin/wslview
+```
+
+## Marp
+
+PDF、PPTXのビルドにはchromeかedgeが必要らしいので入れておく。
+```sh
+sudo apt install software-properties-common apt-transport-https wget
+sudo apt install chromium-browser
+```
+
+```sh
+sudo apt install curl build-essential
+```
+
+nvmを入れて、そこから最新のNode.jsを入れる
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+source ~/.zshrc
+command -v nvm # nvmの存在を確認
+
+nvm install --lts
+nvm install node
+nvm install-latest-npm
+nvm ls # インストールされたバージョンを確認
+node --version # インストールされたバージョンを確認
+npm --version # インストールされたバージョンを確認
+```
+
+プロジェクトフォルダを作りmarp cliを入れる（[参考](https://qiita.com/vpkaerun/items/ca8a26e92b8cc9b0cece)）。
+```sh
+mkdir marp-slides $$ cd $_
+npm init -y
+npm install --save-dev @marp-team/marp-cli
+npx marp --version
+```
+
+`package.json`にレシピを追加する。
+```json
+{
+  "scripts": {
+    "pdf": "marp --pdf",
+    "pptx": "marp --pptx",
+    "html": "marp --html"
+  }
+}
+```
+
+```sh
+npm run pdf slide.md
+npm run html slide.md
+npm run pptx slide.md
+```
+で変換できる。
+
+
+
