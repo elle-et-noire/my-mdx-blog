@@ -1,6 +1,11 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Root } from "hast";
 import { visit } from "unist-util-visit";
+import { Element } from "hast";
+
+interface ExtendedElement extends Element {
+  raw?: string;
+}
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -23,11 +28,12 @@ export default function PostContent({ content }: {
               const [codeEl] = node.children;
               if (codeEl.type === "element") {
                 if (codeEl.tagName == "code") {
-                  // @ts-expect-error: type is not prepared
-                  const s = codeEl.children?.[0].value
-                  if (typeof s === "string")
-                    // @ts-expect-error: type is not prepared
-                    node.raw = s.slice(0, -1); // trailing breakline
+                  const child = codeEl.children?.[0];
+                  if (child && child.type === "text") {
+                    const s = child.value;
+                    if (typeof s === "string")
+                      (node as Element & { raw?: string }).raw = s.slice(0, -1); // trailing breakline
+                  }
                 }
               }
             }
@@ -47,10 +53,8 @@ export default function PostContent({ content }: {
 
               for (const child of node.children) {
                 if (child.type === "element" && child.tagName === "pre") {
-                  // @ts-expect-error: type is not prepared
-                  child.properties["raw"] = node.raw;
+                  (child as ExtendedElement).properties["raw"] = (node as ExtendedElement).raw;
                 }
-
               }
             }
           });

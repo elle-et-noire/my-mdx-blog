@@ -12,7 +12,6 @@ export default function Toc() {
       tocScrollingWrapper: null
     });
 
-    // destroy tocbot if the component was unmounted
     return () => tocbot.destroy();
   }, []);
 
