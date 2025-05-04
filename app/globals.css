@@ -68,12 +68,20 @@
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.inlinemath {
-  @apply inline-block align-middle mx-1;
-}
-
 svg {
   @apply inline align-baseline;
+}
+
+.post a {
+  @apply underline underline-offset-4;
+}
+
+.post a:hover {
+  @apply text-[#324e73] no-underline;
+}
+
+.post h2 {
+  @apply text-[#324e73] text-base sm:text-2xl font-bold py-0.5 sm:py-1 border-l-4 border-l-[#324e73] pl-2 sm:pl-4;
 }
 
 .post p code,
@@ -148,4 +156,15 @@ html.light[data-theme="dark"] {
 
 html.dark[data-theme="light"] {
   display: none;
+}
+
+hr {
+  /* border-width: 0 0 2px; */
+  /* border-style: solid;
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 1"><circle fill="hsla(0, 0%, 65%, 1.0)" cx="1" cy="0.5" r="0.5"/></svg>') 0 0 100% repeat;
+   width: auto; */
+  /* border: 3px dashed; */
+  height: 5px;
+	border: 0;
+	box-shadow: 0 5px 5px -5px #324e73 inset;
 }

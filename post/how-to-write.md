@@ -7,9 +7,9 @@ tags:
 - next
 ---
 
-# 見出し
+## 見出し
 
-```
+```md
 # 見出し
 ## 見出し2
 ### 見出し3
@@ -21,7 +21,7 @@ tags:
 ```
 
 
-# リスト
+## リスト
 
 ```markdown
 - Hello!
@@ -37,7 +37,7 @@ tags:
   * Hi!
     - 3rd
 
-## 番号付きリスト
+### 番号付きリスト
 ```markdown
 1. First
 1. Second
@@ -51,23 +51,23 @@ tags:
 
 1986\. What a great season. ← olキャンセル
 
-# テキストリンク
+## テキストリンク
 ```markdown
 [ZennのMarkdown記法一覧](https://zenn.dev/zenn/articles/markdown-guide)
-[Markdown文法まとめ](https://qiita.com/higuma/items/3344387e0f2cce7f2cfe "よくまとまっている")
-Markdown記法：[「みんな抱きしめて、銀河の果てまで！」は何がすごいのか](/2022/02/embrace-me/)
-`#a`を指定：[ローレンツ不変な体積要素](/2022/01/lorentz-invar-element#a)
-`#blank`を指定：[ローレンツ不変な体積要素](/2022/01/lorentz-invar-element#blank)
+
+[Markdown文法まとめ](https://qiita.com/higuma/items/3344387e0f2cce7f2cfe)
+
+Markdown記法：[Tips for WSL](/tips-wsl)
 ```
 
 [ZennのMarkdown記法一覧](https://zenn.dev/zenn/articles/markdown-guide)
-[Markdown文法まとめ](https://qiita.com/higuma/items/3344387e0f2cce7f2cfe "よくまとまっている")
-Markdown記法：[「みんな抱きしめて、銀河の果てまで！」は何がすごいのか](/2022/02/embrace-me/)
-`#a`を指定：[ローレンツ不変な体積要素](/2022/01/lorentz-invar-element#a)
-`#blank`を指定：[ローレンツ不変な体積要素](/2022/01/lorentz-invar-element#blank)
+
+[Markdown文法まとめ](https://qiita.com/higuma/items/3344387e0f2cce7f2cfe)
+
+Markdown記法：[Tips for WSL](/tips-wsl)
 
 
-# 画像
+## 画像
 ```markdown
 ![altテキスト](https://画像のURL)
 ![altテキスト](/images/画像のURL)
@@ -75,14 +75,14 @@ Markdown記法：[「みんな抱きしめて、銀河の果てまで！」は�
 ![C.C.png](https://pbs.twimg.com/media/EXpim-pUcAASSlH?format=png&name=900x900 "Do you know, C.C.?")
 
 
-## 画像にリンクを貼る
+### 画像にリンクを貼る
 ```markdown
 [![altテキスト](画像のURL)](リンクのURL)
 ```
 [![C.C. knows](https://pbs.twimg.com/media/D6lyI11UwAARUXm?format=png&name=small)](https://pbs.twimg.com/media/D6lyI11UwAARUXm?format=png&name=small)
 
 
-# テーブル
+## テーブル
 ```markdown
 | Head | Head | Head |
 | ---- | ---- | ---- |
@@ -103,9 +103,19 @@ Markdown記法：[「みんな抱きしめて、銀河の果てまで！」は�
 |:-----------|------------:|:------------:|
 | Left       | Right       | Center       |
 
-# コードブロック
+## コードブロック
 
-## ファイル名を表示する
+
+```latex
+Campbell-Baker-Hausdorff の公式は，演算子 $\hat{A},\hat{B}$ を用いて次のように書ける：
+\begin{equation}
+e^{\hat{A}}\hat{B}e^{-\hat{A}}=\hat{B}+[\hat{A},\hat{B}]+\frac{1}{2}[\hat{A},[\hat{A},\hat{B}]]+\cdots.\label{eq1}
+\end{equation}
+
+式\eqref{eq1}を用いて，演算子 $\hat{V}$ の相互作用表示は次のように書くことができる．
+```
+
+### ファイル名を表示する
 
 ````markdown
 ```js:ファイル名
@@ -119,52 +129,10 @@ const great = () => {
 };
 ```
 
-## diffのシンタックスハイライト
-
-````markdown
-```diff js:ファイル名
-内容
-```
-````
-
-```diff js
-@@ -4,6 +4,5 @@
-+  const foo = bar.baz([1, 2, 3]) + 1;
--  let foo = bar.baz([1, 2, 3]);
-+  const foo = bar.baz([1, 2, 3]) + 1;
--  let foo = bar.baz([1, 2, 3]);
-   uouo;
-   uouo;
-```
-
-
-```diff js:fooBar.js
-@@ -4,6 +4,5 @@
-+    const foo = bar.baz([1, 2, 3]) + 1;
--    let foo = bar.baz([1, 2, 3]);
-```
-
-## コードの言語を指定しないとなぜか文字化けする
-
-```js
-   return shell_exec("echo input | markdown_script");
-```
-```
-   return shell_exec("echo input | markdown_script");
-```
-
-```latex
-Campbell-Baker-Hausdorff の公式は，演算子 $\hat{A},\hat{B}$ を用いて次のように書ける：
-\begin{equation}
-e^{\hat{A}}\hat{B}e^{-\hat{A}}=\hat{B}+[\hat{A},\hat{B}]+\frac{1}{2}[\hat{A},[\hat{A},\hat{B}]]+\cdots.\label{eq1}
-\end{equation}
-
-式\eqref{eq1}を用いて，演算子 $\hat{V}$ の相互作用表示は次のように書くことができる．
-```
 
 
 
-# 数式
+## 数式
 
 $$
 e^{i\theta} = \cos\theta + i\sin\theta\\
@@ -192,7 +160,7 @@ $$
 \]
 ```
 
-# 引用
+## 引用
 
 > 引用文
 >> 引用文
@@ -217,7 +185,7 @@ $$
 
 
 
-# 区切り線
+## 区切り線
 
 ```markdown
 ---
@@ -225,7 +193,7 @@ $$
 
 ---
 
-# インラインスタイル
+## インラインスタイル
 
 ```markdown
 *イタリック*
@@ -238,13 +206,13 @@ $$
 ~~打ち消し線~~
 インラインで`code`を挿入する。``files = `ls`.split``とか`` `ps` ``とか。
 
-# インラインのコメント
+## インラインのコメント
 ```markdown
 <!-- TODO: ◯◯について追記する -->
 ```
 <!-- TODO: ◯◯について追記する -->
 
-# チェックボックス
+## チェックボックス
 ```markdown
 - [ ] タスク1
 - [x] タスク2
