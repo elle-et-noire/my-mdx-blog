@@ -91,6 +91,10 @@ svg {
   @apply text-[#324e73] text-base sm:text-2xl font-bold py-0.5 sm:py-1 border-l-4 border-l-[#324e73] pl-2 sm:pl-4;
 }
 
+.post h3 {
+  @apply text-[#324e73] text-base sm:text-xl font-bold;
+}
+
 .post p {
   @apply indent-0 whitespace-pre-wrap;
 }
@@ -99,7 +103,8 @@ svg {
   @apply mt-5;
 }
 
-.post img, .post table {
+.post img,
+.post table {
   @apply mx-auto;
 }
 
@@ -186,7 +191,7 @@ html.dark[data-theme="light"] {
 }
 
 hr {
-  height: 5px;
-	border: 0;
-	box-shadow: 0 5px 5px -5px #324e73 inset;
+  height: 3px;
+  border: 0;
+  box-shadow: 0 3px 3px -3px #324e73 inset;
 }
