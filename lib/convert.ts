@@ -15,6 +15,8 @@ import rehypeSlug from "rehype-slug";
 import { ShikiTransformer } from "shiki";
 import _Link from "@/components/_link";
 import _Pre from "@/components/_pre";
+import remarkUnwrapImages from "remark-unwrap-images";
+import _Image from "@/components/_image";
 
 export const markdownToHtml = async (text: string): Promise<[CompileMDXResult<Record<string, unknown>>, string[]]> => {
   const spacer = "\\hspace{0.2em}";
@@ -139,7 +141,7 @@ ${content}
 
   const options = {
     mdxOptions: {
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, remarkUnwrapImages],
       rehypePlugins: [
         () => (tree: Root) => {
           visit(tree, (node) => {
@@ -188,6 +190,7 @@ ${content}
     components: {
       a: _Link,
       pre: _Pre,
+      img: _Image,
       MathJax: MathJax,
     }
   });

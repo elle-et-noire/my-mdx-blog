@@ -67,13 +67,13 @@ export default function MathEnvironment(props: Props) {
     },
     svg: {
       fontCache: 'global',
-      displayAlign: 'left',
-      displayIndent: '2em',
+      // displayAlign: 'left',
+      // displayIndent: '2em',
       mtextInheritFont: true,
     },
     chtml: {
-      displayAlign: 'left',
-      displayIndent: '2em',
+      // displayAlign: 'left',
+      // displayIndent: '2em',
       mtextInheritFont: true,
     },
     startup: {
