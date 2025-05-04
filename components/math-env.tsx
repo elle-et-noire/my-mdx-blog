@@ -1,3 +1,5 @@
+"use client";
+
 import { MathJaxContext } from "better-react-mathjax";
 
 export type Props = {

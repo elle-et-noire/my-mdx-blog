@@ -1,8 +1,8 @@
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemoteSerializeResult } from 'next-mdx-remote'
-// import gfm from 'remark-gfm'
+// import { serialize } from 'next-mdx-remote/serialize'
+// import { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
+import { compileMDX, CompileMDXResult } from "next-mdx-remote/rsc";
+import { MathJax } from "better-react-mathjax"
 
-// import { MDXRemote } from "next-mdx-remote/rsc";
 import { Root } from "hast";
 import { visit } from "unist-util-visit";
 import { Element } from "hast";
@@ -11,16 +11,14 @@ interface ExtendedElement extends Element {
   raw?: string;
 }
 import remarkGfm from "remark-gfm";
-// import remarkMath from "remark-math";
 import rehypePrettyCode from "rehype-pretty-code";
 import { transformerLineNumbers } from "@rehype-pretty/transformers";
 import rehypeSlug from "rehype-slug";
-// import rehypeMathJaxSvg from "rehype-mathjax";
-// import _Link from "@/components/_link";
-// import _Pre from "@/components/_pre";
 import { ShikiTransformer } from "shiki";
+import _Link from "@/components/_link";
+import _Pre from "@/components/_pre";
 
-export const markdownToHtml = async (text: string): Promise<[MDXRemoteSerializeResult, string[]]> => {
+export const markdownToHtml = async (text: string): Promise<[CompileMDXResult<Record<string, unknown>>, string[]]> => {
   const spacer = "\\hspace{0.2em}";
   const rsmashers = ["。", "、", "）", "，", "．", " ", "　", "-", "：", "", "(", "（"];
   const lsmashers = ["（", "-", "", ")", "）"];
@@ -182,16 +180,25 @@ ${content}
           });
         },
         rehypeSlug,
-        // rehypeMathJaxSvg,
       ],
     },
   };
 
-  console.log(processible);
+  // const MDXComponents = {
+  //   a: _Link,
+  //   pre: _Pre,
+  //   MathJax: MathJax,
+  // };
 
-  const mdxSource = await serialize(`<MathJax hideUntilTypeset={"first"}>\n${processible}\n</MathJax>`, {
-    mdxOptions: options.mdxOptions,
+  const mdx = await compileMDX({
+    source: `<MathJax hideUntilTypeset={"first"}>\n${processible}\n</MathJax>`,
+    options: options,
+    components: {
+      a: _Link,
+      pre: _Pre,
+      MathJax: MathJax,
+    }
   });
 
-  return [mdxSource, mathblocks];
+  return [mdx, mathblocks];
 };

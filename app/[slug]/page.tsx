@@ -1,7 +1,6 @@
 import { GetAllSlugs, GetPostBySlug } from "@/lib/post";
 import Toc from "@/components/toc";
 import Link from "next/link";
-import PostContent from "@/components/post-content";
 import DateInfo from "@/components/date-info";
 import { markdownToHtml } from "@/lib/convert";
 import PostContentMath from "@/components/post-content-math";
@@ -26,7 +25,7 @@ export async function generateStaticParams() {
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
   const { content, data } = GetPostBySlug(slug);
-  const [mdxSource, mathblocks] = await markdownToHtml(content || "");
+  const [mdx, mathblocks] = await markdownToHtml(content || "");
 
 
   return (
@@ -71,7 +70,7 @@ export default async function PostPage({ params }: PostPageProps) {
               prose-ul:my-2"
             > */}
             {/* <span className="block"> */}
-              <PostContentMath mathblocks={mathblocks} content={mdxSource} />
+              <PostContentMath mathblocks={mathblocks} mdx={mdx} />
             {/* </span> */}
             {/* </div> */}
           </div>

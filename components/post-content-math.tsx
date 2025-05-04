@@ -1,17 +1,14 @@
-// import type { _Props } from "./types"
-"use client"
+"use client";
 
 import React, { useContext, useRef, useEffect } from "react"
 import { MathJaxBaseContext, MathJax3Object, MathJax } from "better-react-mathjax"
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import _Link from "./_link";
-import _Pre from "./_pre";
-// import mermaid from 'mermaid'
-// import CustomLink from "../customLink"
-// import CustomImage from "../customImage"
+import { CompileMDXResult } from 'next-mdx-remote/rsc'
+// import _Link from "./_link";
+// import _Pre from "./_pre";
 
 type Props = {
-  content: MDXRemoteSerializeResult;
+  // content: MDXRemoteSerializeResult;
+  mdx: CompileMDXResult<Record<string, unknown>>;
   mathblocks: string[];
 };
 
@@ -64,20 +61,18 @@ export default function PostContentMath(props: Props) {
         }
       });
     }
-    // mermaid.init('.mermaid');
   });
 
-  const MDXComponents = {
-    a: _Link,
-    pre: _Pre,
-    // a: CustomLink,
-    // img: CustomImage,
-    MathJax: MathJax,
-  };
+  // const MDXComponents = {
+  //   a: _Link,
+  //   pre: _Pre,
+  //   MathJax: MathJax,
+  // };
 
   return (
     <div ref={mathBlock} className="post">
-      <MDXRemote {...props.content} components={MDXComponents} />
+      {/* <MDXRemote source={props.content.compiledSource} components={MDXComponents} /> */}
+      {props.mdx.content}
       <MathJax hideUntilTypeset={"first"}>
         {props.mathblocks.map((value, index) => (
           <div key={index} id={`preview-mjx-${encodeURIComponent(index)}`} className="window">

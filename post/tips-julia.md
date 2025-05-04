@@ -199,7 +199,9 @@ end
 
 1. **篩い始めの位置** \
 素数\(p\)で篩にかけていく際、
-$p = 30q + r_j,\quad r_j \in \{1, 7, 11, 13, 17, 19, 23, 29\}$
+
+$$p = 30q + r_j,\quad r_j \in \{1, 7, 11, 13, 17, 19, 23, 29\}$$
+
 に対して篩い始めの\(p^2\)が格納されている場所は
 $p^2 = 30(30q^2 + 2q r_j + \lfloor r_j^2 / 30 \rfloor) + (r_j^2 \mod 30)$
 から`30q^2 + 2q * r[j] + r[j]^2 ÷ 30`番目の`UInt8`の`r[j]^2 % 30`ビット目と分かる。
@@ -209,10 +211,12 @@ $p^2 = 30(30q^2 + 2q r_j + \lfloor r_j^2 / 30 \rfloor) + (r_j^2 \mod 30)$
 
 3. **次に篩う位置** \
 \(pn\)を篩ったら次は\(pn'\)を篩いたい。ここで\(n' = 30q_n + r_{k+1}\)は\(30q + \{1,7,11,13,17,19,23,29\}\)で表される整数で\(n\)の次に小さいものである（ただし\(r_{k+1} \in \{7,11,13,17,19,23,29,31\}\)）。そのためには\(q_{pn'} = \lfloor pn' / 30 \rfloor\)を得る必要があるが、これは差分を計算するとよい：
-$\begin{aligned}
+
+$$\begin{aligned}
 \lfloor pn'/30 \rfloor - \lfloor pn/30 \rfloor &= \left\lfloor \dfrac{(30q + r_j)(30q_n + r_{k+1})}{30} \right\rfloor - \left\lfloor \dfrac{(30q + r_j)(30q_n + r_{k})}{30} \right\rfloor \\[5pt]
 & = q(r_{k+1} - r_k) + \left\lfloor \dfrac{r_j r_{k+1}}{30} \right\rfloor - \left\lfloor \dfrac{r_j r_k}{30} \right\rfloor.
-\end{aligned}$
+\end{aligned}$$
+
 \(r_{k+1} - r_k\)を`dr[k]`に、\(\left\lfloor \dfrac{r_j r_{k+1}}{30} \right\rfloor - \left\lfloor \dfrac{r_j r_k}{30} \right\rfloor\)を`dqrr[j,k]`にそれぞれ格納しておくとやはり計算を節約できる。ビット位置については`k = (k+1) % 8`でよい。
 
 以上の内容をコードに落とすと以下のようになる（Juliaが1-indexedであるため上の疑似コードからインデックスが若干ずれる）。また`r,dr,dqrr,r_rr`は長さが決まっていて頻繁にアクセスするので`StaticArrays.SArray`として定義することで大幅に高速化できる。
