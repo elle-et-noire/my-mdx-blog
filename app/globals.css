@@ -72,10 +72,6 @@
   @apply inline-block align-middle mx-1;
 }
 
-/* .post mjx-container {
-  @apply flex justify-center;
-} */
-
 svg {
   @apply inline align-baseline;
 }

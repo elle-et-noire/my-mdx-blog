@@ -1,5 +1,3 @@
-// import { serialize } from 'next-mdx-remote/serialize'
-// import { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc'
 import { compileMDX, CompileMDXResult } from "next-mdx-remote/rsc";
 import { MathJax } from "better-react-mathjax"
 
@@ -183,12 +181,6 @@ ${content}
       ],
     },
   };
-
-  // const MDXComponents = {
-  //   a: _Link,
-  //   pre: _Pre,
-  //   MathJax: MathJax,
-  // };
 
   const mdx = await compileMDX({
     source: `<MathJax hideUntilTypeset={"first"}>\n${processible}\n</MathJax>`,

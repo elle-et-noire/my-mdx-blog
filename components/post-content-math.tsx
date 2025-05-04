@@ -3,11 +3,8 @@
 import React, { useContext, useRef, useEffect } from "react"
 import { MathJaxBaseContext, MathJax3Object, MathJax } from "better-react-mathjax"
 import { CompileMDXResult } from 'next-mdx-remote/rsc'
-// import _Link from "./_link";
-// import _Pre from "./_pre";
 
 type Props = {
-  // content: MDXRemoteSerializeResult;
   mdx: CompileMDXResult<Record<string, unknown>>;
   mathblocks: string[];
 };
@@ -63,15 +60,8 @@ export default function PostContentMath(props: Props) {
     }
   });
 
-  // const MDXComponents = {
-  //   a: _Link,
-  //   pre: _Pre,
-  //   MathJax: MathJax,
-  // };
-
   return (
     <div ref={mathBlock} className="post">
-      {/* <MDXRemote source={props.content.compiledSource} components={MDXComponents} /> */}
       {props.mdx.content}
       <MathJax hideUntilTypeset={"first"}>
         {props.mathblocks.map((value, index) => (

@@ -27,7 +27,6 @@ export default async function PostPage({ params }: PostPageProps) {
   const { content, data } = GetPostBySlug(slug);
   const [mdx, mathblocks] = await markdownToHtml(content || "");
 
-
   return (
     <>
       <div // glass morphism background
@@ -69,9 +68,7 @@ export default async function PostPage({ params }: PostPageProps) {
               prose-code:before:content-none prose-code:after:content-none
               prose-ul:my-2"
             > */}
-            {/* <span className="block"> */}
               <PostContentMath mathblocks={mathblocks} mdx={mdx} />
-            {/* </span> */}
             {/* </div> */}
           </div>
           <div //right column
