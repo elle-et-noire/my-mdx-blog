@@ -1,7 +1,7 @@
 ---
 title: Next.js + MDXでブログサイト制作入門
 publish: 2024-12-19
-lastUpdate: 2024-12-21
+lastUpdate: 2025-05-05
 tags:
 - web
 - nextjs
@@ -78,7 +78,10 @@ Node.jsをインストールして`npm`コマンドが使える状態にして�
 ```
 </details>
 
-プロジェクトフォルダに移動して`npm run dev`で現状にウェブサイトを確認できる。
+プロジェクトフォルダに移動して`npm run dev`で現状のウェブサイトを確認できる。
+
+
+※App Routerを使う場合実は`next-mdx-remote/rsc`の関数を使わなければいけない。詳細は[参考文献](#参考文献)[4]を参考にする。
 
 
 ## Markdownを読み込んで表示する
@@ -660,7 +663,7 @@ Node.jsをインストールして`npm`コマンドが使える状態にして�
 ```
 </details>
 
-プロジェクトフォルダに移動して`npm run dev`で現状にウェブサイトを確認できる。
+プロジェクトフォルダに移動して`npm run dev`で現状のウェブサイトを確認できる。
 
 
 ## Markdownを読み込んで表示する
@@ -1233,3 +1236,4 @@ MathJax 3の機能を利用したい場合は`better-react-mathjax`を用いる�
 1. [Next.js + MDXでブログ開発](https://amateur-engineer-blog.com/build-blog-using-nextjs-with-mdx)
 2. [Next.js+MarkdownのブログにTocbotを使って目次を作成する](https://amateur-engineer-blog.com/create-toc-by-tocbot-for-nextjs-mdx-blog)
 3. [Next.jsを利用した初めての本格的Markdownブログサイトの構築](https://reffect.co.jp/react/nextjs-markdown-blog)
+4. [Next.jsのDynamic RoutesでMDXを使う方法](https://www.zenryoku-kun.com/new-post/nextjs-mdx-remote)
