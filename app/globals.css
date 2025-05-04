@@ -72,8 +72,12 @@
   @apply inline-block align-middle mx-1;
 }
 
-.post mjx-container {
+/* .post mjx-container {
   @apply flex justify-center;
+} */
+
+svg {
+  @apply inline align-baseline;
 }
 
 .post p code,

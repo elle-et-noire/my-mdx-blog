@@ -1,8 +1,11 @@
 // import type { _Props } from "./types"
+"use client"
 
 import React, { useContext, useRef, useEffect } from "react"
 import { MathJaxBaseContext, MathJax3Object, MathJax } from "better-react-mathjax"
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import _Link from "./_link";
+import _Pre from "./_pre";
 // import mermaid from 'mermaid'
 // import CustomLink from "../customLink"
 // import CustomImage from "../customImage"
@@ -12,11 +15,11 @@ type Props = {
   mathblocks: string[];
 };
 
-const isMathJax3Object = (mjObject: any): mjObject is MathJax3Object => {
+const isMathJax3Object = (mjObject: unknown): mjObject is MathJax3Object => {
   return !!(mjObject as MathJax3Object)?.startup
 }
 
-export default function PostContent(props: Props) {
+export default function PostContentMath(props: Props) {
   const mjContext = useContext(MathJaxBaseContext);
   const mathBlock = useRef(null);
   useEffect(() => {
@@ -64,7 +67,9 @@ export default function PostContent(props: Props) {
     // mermaid.init('.mermaid');
   });
 
-  const MDXComponents: any = {
+  const MDXComponents = {
+    a: _Link,
+    pre: _Pre,
     // a: CustomLink,
     // img: CustomImage,
     MathJax: MathJax,
