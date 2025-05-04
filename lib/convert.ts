@@ -69,7 +69,7 @@ export const markdownToHtml = async (text: string): Promise<[CompileMDXResult<Re
     return `<quote${ord++}/>`;
   }).replace(/<!--[\s\S]*?-->/g, (match: string) => `<p className="hidden">{\`${match}\`}</p>`)
     .replace(/(!\[[\s\S]*?\]\([\s\S]*?\))\[([\s\S]*?)(?<!\\)\]/g, (_, p1: string, p2: string) => {
-      return `${p1}<p className="text-center mt-0">${p2}</p>`;
+      return `${p1}\n\n<p className="img-caption text-center">${p2}</p>`;
     }).replace(/\\\(/g, (_, offset: number, string: string) => opener(string, offset))
     .replace(/\\\)/g, (_, offset: number, string: string) => closer(string, offset + 1))
     .replace(/\\\[[\s\S]*?\\\]|\$\$[\s\S]*?\$\$|\\begin\{([^\}]*)\}[\s\S]*?\\end\{\1\}/g, (math: string) => {

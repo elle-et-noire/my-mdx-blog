@@ -81,6 +81,14 @@ Markdown記法：[Tips for WSL](/tips-wsl)
 ```
 [![C.C. knows](https://pbs.twimg.com/media/D6lyI11UwAARUXm?format=png&name=small)](https://pbs.twimg.com/media/D6lyI11UwAARUXm?format=png&name=small)
 
+### 画像の横幅を指定する、キャプションをつける
+```markdown
+![altテキスト](画像のURL#{width}_{height})[キャプション]
+```
+
+![C.C.はしっているか](https://pbs.twimg.com/media/D6lyI11UwAARUXm?format=png&name=small#450_150)[Do you know, **C.C.**?$\int \dd{x}$]
+
+キャプションはちゃんと画像よりになっている。
 
 ## テーブル
 ```markdown
@@ -159,6 +167,16 @@ $$
 \mqty[\dmat[0]{1,-1}]
 \]
 ```
+
+可換図式も描ける。
+
+\begin{array}{cc|c}{\begin{xy}
+\xymatrix{V\times W \ar[r]^{B} \ar[rd]_{\otimes} & T \ar[d]^{\gamma} \\   & V\otimes W}
+\end{xy}}\ \mqty{\\[25pt]\implies} &{\begin{xy}
+\xymatrix{V\times W \ar[r]^{\otimes} \ar[d]_{\otimes} \ar[rd]_{B} & V\otimes W \ar[d]^{\beta} \\ V\otimes W & T \ar[l]^{\gamma}}
+\end{xy}}&{\begin{xy}
+\xymatrix{V\times W \ar[r]^{\otimes} \ar[rd]_{\otimes} & V\otimes W \ar[d]^{\operatorname{id}} \\ & V\otimes W}
+\end{xy}}\end{array}
 
 ## 引用
 
