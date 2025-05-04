@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Kosugi_Maru, Nunito, Fira_Mono } from "next/font/google";
 
 import "./globals.css";
 import ProgressBarProvider from "@/components/progress-bar";
+import MathEnvironment from "@/components/math-env";
 
 const noto_sans_jp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -42,20 +43,22 @@ export default function RootLayout({
         ${fira_mono.variable}
          antialiased`}
       >
-        <ProgressBarProvider>
-          <main className="min-h-svh m-0 pb-12 bg-[#a0bac8]">
-            <div className="
+        <MathEnvironment>
+          <ProgressBarProvider>
+            <main className="min-h-svh m-0 pb-12 bg-[#a0bac8]">
+              <div className="
             z-0 fixed top-0 left-0 right-0
             pt-4 pb-2 w-full
             bg-[#f8f8f8] shadow-[0_1px_1px_1px_rgba(0,0,0,0.3)]
             text-center text-[#112b45] text-lg md:text-2xl font-system
             underline underline-offset-[12px] decoration-4 decoration-yellow-300"
-            >
-              記事一覧
-            </div>
-            {children}
-          </main>
-        </ProgressBarProvider>
+              >
+                記事一覧
+              </div>
+              {children}
+            </main>
+          </ProgressBarProvider>
+        </MathEnvironment>
       </body>
     </html>
   );

@@ -14,6 +14,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeMathJaxSvg from "rehype-mathjax";
 import _Link from "./_link";
 import _Pre from "./_pre";
+import { ShikiTransformer } from "shiki";
 
 export default function PostContent({ content }: {
   content: string;
@@ -40,12 +41,11 @@ export default function PostContent({ content }: {
           });
         },
         [rehypePrettyCode, {
-          // theme: "one-dark-pro",
           keepBackground: false,
           transformers: [
             transformerLineNumbers({ autoApply: true }),
-          ]
-        }],
+          ],
+        }] as [typeof rehypePrettyCode, { keepBackground: boolean; transformers: ShikiTransformer[] }],
         () => (tree: Root) => {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "figure") {
@@ -71,7 +71,6 @@ export default function PostContent({ content }: {
         .replace(/\\\(/g, "<span className='inlinemath'>$")
         .replace(/\\\)/g, "$</span>")
       }
-      // @ts-expect-error: type is not prepared
       options={options}
       components={{
         a: _Link,
