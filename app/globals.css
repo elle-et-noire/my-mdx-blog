@@ -6,6 +6,7 @@
   --font-noto-sans: var(--font-noto-sans-jp);
   --font-system: var(--font-nunito), var(--font-kosugi-maru), sans-serif;
   --font-mono: Consolas, var(--font-fira-mono);
+  --font-kosugi-maru: var(--font-kosugi-maru), sans-serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -23,7 +24,7 @@
   *,
   ::after,
   ::before,
-  ::backdrop,
+  /* ::backdrop, */
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }

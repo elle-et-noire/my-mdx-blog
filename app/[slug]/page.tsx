@@ -32,8 +32,8 @@ export default async function PostPage({ params }: PostPageProps) {
       <div // glass morphism background
         className="
           z-10 fixed top-0 left-0 right-0
-          size-full bg-[#76ddfc]
-          backdrop-filter backdrop-blur-[3px] bg-opacity-15
+          size-full bg-[#76ddfc]/15
+          backdrop-blur-[3px]
         "
       />
       <div // modal window like

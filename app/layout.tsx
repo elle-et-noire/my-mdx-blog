@@ -35,14 +35,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`
-        ${noto_sans_jp.variable}
-        ${kosugi_maru.variable}
-        ${nunito.variable}
-        ${fira_mono.variable}
-         antialiased`}
-      >
+    <html lang="ja" className={`
+      ${noto_sans_jp.variable}
+      ${kosugi_maru.variable}
+      ${nunito.variable}
+      ${fira_mono.variable}
+       antialiased`}
+    >
+      <body>
         <MathEnvironment>
           <ProgressBarProvider>
             <main className="min-h-svh m-0 pb-12 bg-[#a0bac8]">
