@@ -66,7 +66,7 @@ export default function MathEnvironment(props: Props) {
       processRefs: true,
     },
     svg: {
-      fontCache: 'global',
+      fontCache: 'local',
       // displayAlign: 'left',
       // displayIndent: '2em',
       mtextInheritFont: true,

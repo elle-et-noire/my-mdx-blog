@@ -137,9 +137,6 @@ const great = () => {
 };
 ```
 
-
-
-
 ## 数式
 
 $$
@@ -147,8 +144,7 @@ e^{i\theta} = \cos\theta + i\sin\theta\\
 =\operatorname{cis}\theta
 $$
 
-のように数式を書ける。
-
+のように数式を書ける。また`\text`でフォントが引き継がれる：$S_\text{Bekenstein-Hawking}$
 
 インラインでも$a=0$のように書ける。
 * うおお。$a=0$。
