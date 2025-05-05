@@ -451,7 +451,7 @@ function PostCard({
     >
       <h2 className="
         ml-6 mt-4
-        font-semibold font-[family-name:var(--font-noto-sans)]
+        font-semibold font-(family-name:--font-noto-sans)
         text-lg md:text-xl"
       >
         {post.data.title}
@@ -459,7 +459,7 @@ function PostCard({
       <div className="
         m-0 pl-6 pt-1 pb-2
         flex justify-start gap-2
-        font-[family-name:var(--font-kosugi-maru)] font-[400]
+        font-(family-name:--font-kosugi-maru) font-[400]
         text-gray-400 text-sm italic"
       >
         <div>
@@ -1033,7 +1033,7 @@ function PostCard({
     >
       <h2 className="
         ml-6 mt-4
-        font-semibold font-[family-name:var(--font-noto-sans)]
+        font-semibold font-(family-name:--font-noto-sans)
         text-lg md:text-xl"
       >
         {post.data.title}
@@ -1041,7 +1041,7 @@ function PostCard({
       <div className="
         m-0 pl-6 pt-1 pb-2
         flex justify-start gap-2
-        font-[family-name:var(--font-kosugi-maru)] font-[400]
+        font-(family-name:--font-kosugi-maru) font-[400]
         text-gray-400 text-sm italic"
       >
         <div>

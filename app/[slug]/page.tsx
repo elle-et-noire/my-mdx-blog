@@ -63,7 +63,7 @@ export default async function PostPage({ params }: PostPageProps) {
               prose-h2:pl-2 sm:prose-h2:pl-4 prose-h2:py-0.5 sm:prose-h2:py-1
               prose-h2:text-base sm:prose-h2:text-2xl
               prose-a:underline-offset-[5px] prose-a:decoration-[1pt]
-              hover:prose-a:no-underline
+              prose-a:hover:no-underline
               prose-pre:my-2 prose-p:my-2
               prose-code:before:content-none prose-code:after:content-none
               prose-ul:my-2"
