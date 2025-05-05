@@ -104,7 +104,7 @@ svg {
 }
 
 .post {
-  @apply text-[#374151]
+  @apply text-[#101828];
 }
 
 .post a {
@@ -124,7 +124,11 @@ svg {
 }
 
 .post p {
-  @apply indent-0 whitespace-pre-wrap;
+  @apply indent-0 whitespace-pre-wrap font-[500];
+}
+
+.post li {
+  @apply font-[500];
 }
 
 .post p+p {
