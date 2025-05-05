@@ -158,7 +158,7 @@ svg {
 }
 
 .post pre code {
-  @apply pt-3 text-base;
+  @apply pt-3 text-sm font-[400];
 }
 
 .post h2 code {
