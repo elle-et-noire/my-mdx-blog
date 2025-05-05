@@ -139,6 +139,14 @@ svg {
   @apply mt-5;
 }
 
+.post p:has(+.scrollable) {
+  @apply mb-0;
+}
+
+.post .scrollable + p {
+  @apply mt-0;
+}
+
 .post img,
 .post table {
   @apply mx-auto;

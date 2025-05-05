@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-02-18
+lastUpdate: 2025-05-05
 ---
 
 ## 構文解析
@@ -317,4 +317,61 @@ fib(n, a=0, b=1) = n == 0 ? a : fib(n - 1, b, a + b)
 begin
   @assert fib.(1:5) == [1,1,2,3,5]
 end
+```
+
+## Ricciスカラーの計算
+
+計量$g_{ij}$が与えられれば定義に従ってChristoffel記号
+
+$$\Gamma^i_{\;jk} = \frac{1}{2}g^{il}(g_{lj,k}+g_{kl,j}-g_{jk,l})$$
+
+が得られる（手計算の場合は作用$S = \int \dd{t} g_{ij} \dot{x}^i \dot{x}^j$から測地線方程式を導き、その係数からChristoffel記号を読み取る方が幾分か楽 [参考](https://mathlog.info/articles/S3DLwaHTMpkp3lf1qtZu)）。以下定義を列挙する。
+
+- Riemann曲率テンソル : $R^i{}_{jkl} = \partial_k {\Gamma^i}_{jl} - \partial_l {\Gamma^i}_{jk} + {\Gamma^i}_{mk} {\Gamma^m}_{jl} - {\Gamma^i}_{ml} {\Gamma^m}_{jk}$
+
+- Ricciテンソル : $R_{ij} = {R^k}_{ikj}$
+
+- Ricciスカラー : $S = \tr R$
+
+
+Symbolics.jlを使えば形式的な計算が可能になる。
+
+```julia
+using Symbolics
+using LinearAlgebra
+
+D = Symbolics.derivative
+
+function curvature(xi, g)
+  ginv = inv(g)
+
+  Gamma(k, i, j) =
+    (1 // 2) * sum([ginv[k, n] * (
+      D(g[n, i], xi[j]) +
+      D(g[n, j], xi[i]) -
+      D(g[i, j], xi[n])
+    ) for n in 1:2])
+
+  R(i, j, k, l) =
+    D(Gamma(i, j, l), xi[k]) -
+    D(Gamma(i, j, k), xi[l]) +
+    sum([Gamma(n, j, l) * Gamma(i, n, k) -
+         Gamma(n, j, k) * Gamma(i, n, l)
+         for n in 1:2])
+
+  Ricc(j, k) = sum([R(n, j, n, k) for n in 1:2])
+  RiccM = [Ricc(i, j) for i in 1:2, j in 1:2] |> simplify
+
+  simplify(tr(ginv * RiccM))
+end
+
+@variables L θ ϕ ρ τ r u t
+
+println("curvature of S^2: ", curvature([θ, ϕ], Diagonal([L^2, L^2 * sin(θ)^2])))
+println("curvature of H^2: ", curvature([ρ, ϕ], Diagonal([L^2, L^2 * sinh(ρ)^2])))
+println("curvature of AdS_2: ", curvature([ρ, τ], Diagonal([-L^2 * cosh(ρ)^2, L^2])))
+println("curvature of dS_2: ", curvature([ρ, τ], Diagonal([-L^2, L^2 * cosh(τ)^2])))
+println("curvature of AdS_2 (static coord.): ", curvature([τ, r], Diagonal([-L^2 * (r^2 + 1), L^2 / (r^2 + 1)])))
+println("curvature of AdS_2 (conformal coord.): ", curvature([τ, θ], Diagonal([-L^2 / cos(θ)^2, L^2 / cos(θ)^2])))
+println("curvature of AdS_2 (poincare coord.): ", curvature([t, u], Diagonal([-L^2 * u^2, L^2 / u^2])))
 ```
