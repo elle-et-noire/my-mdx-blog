@@ -1,7 +1,7 @@
 ---
 title: Tips for Julia
 publish: 2025-01-01
-lastUpdate: 2025-05-05
+lastUpdate: 2025-05-06
 ---
 
 ## 構文解析
@@ -153,7 +153,61 @@ end
 
 ## SVGの生成
 
-[BenLauwens/NativeSVG.jl](https://github.com/BenLauwens/NativeSVG.jl)を用いる。
+[Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl)が便利。以下にこのサイトのアイコンを生成するコードを載せる。
+
+```julia
+using Luxor, Colors, LinearAlgebra
+using Curry
+
+function rodrig(n, θ)
+  K = mapslices(curry(cross)(n), I(3); dims=2)
+  I + sin(θ) * K + (1 - cos(θ)) * K^2
+end
+
+function main()
+  Drawing(256, 256, "favicon.svg")
+
+  n = 7
+  R = (rodrig([1, 0, 0], π / 5) * rodrig([0, 1, 0], π / 5))[1:2, 1:2]'
+  p = Point.(Tuple.(eachcol(R * hcat(collect.(sincos.((1:n) * 2π / n))...))))
+
+  origin(106, 158)
+
+  sethue("white")
+  poly(p * 120, :fillstroke)
+
+  setmode("clear")
+  poly(p * 80, :fillstroke)
+
+  n = 4
+  s = [Point((iseven(i) ? 1 : 0.2) .* sincos(i * π / 4 + π / 24)) for i in 1:8]
+
+  origin(160, 102)
+
+  setmode("clear")
+  poly(s * 144, :fillstroke)
+
+  setmode("over")
+  sethue("white")
+  poly(s * 92, :fillstroke)
+
+  finish()
+end
+
+main()
+```
+
+上記のコードを実行すると`favicon.svg`が生成されるのでInkscapeを用いてPNGに変換し、ImageMagickを用いてICOに変換する。
+
+```sh
+for size in 16 32 48 64 128 256; do
+  inkscape favicon.svg -o icon-${size}.png -w ${size} -h ${size}
+done
+
+magick icon-16.png icon-32.png icon-48.png icon-64.png icon-128.png icon-256.png favicon.ico
+
+rm icon-*.png
+```
 
 ## Eratosthenesの篩
 
