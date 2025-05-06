@@ -168,10 +168,10 @@ function main()
   Drawing(256, 256, "favicon.svg")
 
   n = 7
-  R = (rodrig([1, 0, 0], π / 5) * rodrig([0, 1, 0], π / 5))[1:2, 1:2]'
+  R = (rodrig([1, 0, 0], π / 7)*rodrig([0, 1, 0], π / 7))[1:2, 1:2]'
   p = Point.(Tuple.(eachcol(R * hcat(collect.(sincos.((1:n) * 2π / n))...))))
 
-  origin(106, 158)
+  origin(112, 146)
 
   sethue("white")
   poly(p * 120, :fillstroke)
@@ -180,16 +180,16 @@ function main()
   poly(p * 80, :fillstroke)
 
   n = 4
-  s = [Point((iseven(i) ? 1 : 0.2) .* sincos(i * π / 4 + π / 24)) for i in 1:8]
+  s(r) = [Point((iseven(i) ? 1 : r) .* sincos(i * π / n)) for i in 1:2n]
 
-  origin(160, 102)
-
+  origin(150, 110)
   setmode("clear")
-  poly(s * 144, :fillstroke)
+  poly(s(0.25) * 140, :fillstroke)
 
+  origin(160, 100)
   setmode("over")
   sethue("white")
-  poly(s * 92, :fillstroke)
+  poly(s(0.16) * 100, :fillstroke)
 
   finish()
 end
