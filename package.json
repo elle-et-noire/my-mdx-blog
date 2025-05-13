@@ -25,7 +25,7 @@
     "rehype-unwrap-images": "^1.0.0",
     "remark-gfm": "^4.0.1",
     "shiki": "^3.4.0",
-    "tailwind-merge": "^3.2.0",
+    "tailwind-merge": "^3.3.0",
     "tocbot": "^4.36.3",
     "unist-util-visit": "^5.0.0"
   },
